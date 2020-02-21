@@ -2,7 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 
-const FilmData = {
+
+const onHeaderClick = () => {};
+
+const PromoFilm = {
   TITLE: `The Grand Budapest Hotel`,
   GENRE: `Drama`,
   YEAR: 2014
@@ -87,15 +90,16 @@ const filmsCards = [{
 
 ReactDOM.render(<
   App title = {
-    FilmData.TITLE
+    PromoFilm.TITLE
   }
   genre = {
-    FilmData.GENRE
+    PromoFilm.GENRE
   }
   year = {
-    FilmData.YEAR
+    PromoFilm.YEAR
   }
   cards = {filmsCards}
+  onClickFunc = {onHeaderClick}
 />,
 document.querySelector(`#root`)
 );

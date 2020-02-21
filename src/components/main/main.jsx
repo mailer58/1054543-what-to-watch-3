@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-const Main = ({titleFilm, genreFilm, yearFilm, filmsCards}) => {
+const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -72,7 +72,7 @@ const Main = ({titleFilm, genreFilm, yearFilm, filmsCards}) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button onClick={onHeaderClick} className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xmlnsXlink="#add"></use>
                   </svg>
@@ -167,7 +167,8 @@ Main.propTypes = {
         title: PropTypes.string.isRequired,
         img: PropTypes.string.isRequired
       })
-  ).isRequired
+  ).isRequired,
+  onHeaderClick: PropTypes.func.isRequired,
 };
 
 export default Main;
