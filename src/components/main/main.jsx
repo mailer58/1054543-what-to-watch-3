@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
+const genres = [`All genres`,
+  `Comedies`,
+  `Crime`,
+  `Documentary`,
+  `Dramas`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-Fi`,
+  `Thrillers`];
+
 const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
   return (
     <React.Fragment>
@@ -72,7 +83,7 @@ const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button onClick={onHeaderClick} className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xmlnsXlink="#add"></use>
                   </svg>
@@ -89,36 +100,12 @@ const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
+            {genres.map((genre, index) => {
+              return (<li key ={index} className={genre === `All genres` ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}>
+                <a href="#" className="catalog__genres-link" onClick={onHeaderClick}>{genre}</a>
+              </li>);
+            })
+            }
           </ul>
 
           <div className="catalog__movies-list">

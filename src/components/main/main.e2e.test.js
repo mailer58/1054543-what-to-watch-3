@@ -7,6 +7,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
+
 const PromoFilm = {
   TITLE: `The Grand Budapest Hotel`,
   GENRE: `Drama`,
@@ -38,8 +39,13 @@ it(`Should header be pressed`, () => {
       />
   );
 
-  const header = main.find(`.btn--list`);
-  header.props().onClick();
+  const headers = main.find(`.catalog__genres-link`);
 
-  expect(onHeaderClick.mock.calls.length).toBe(1);
+  let number = 0;
+  headers.forEach((node) => {
+    expect(node.props().onClick());
+    number++;
+  });
+
+  expect(onHeaderClick.mock.calls.length).toBe(number);
 });
