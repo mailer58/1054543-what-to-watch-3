@@ -22,7 +22,8 @@ App.propTypes = {
         img: PropTypes.string.isRequired
       })
   ).isRequired,
-  onClickFunc: PropTypes.func.isRequired
+  onClickFunc: PropTypes.func.isRequired,
+  onMouseOverFunc: PropTypes.func.isRequired
 };
 
 export default App;
