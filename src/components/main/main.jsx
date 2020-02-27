@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import FilmsList from './../films-list/films-list.jsx';
 
 const genres = [`All genres`,
   `Comedies`,
@@ -109,19 +110,8 @@ const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {filmsCards.map((film, index) => {
-              return (<article key={index} className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src={film.img} alt={film.title} width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">{film.title}</a>
-                </h3>
-              </article>);
-            })
-            }
+            <FilmsList films = {filmsCards}/>
           </div>
-
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
