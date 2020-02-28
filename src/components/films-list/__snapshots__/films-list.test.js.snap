@@ -3,6 +3,7 @@
 exports[`Should Main render correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOut={[Function]}
   onMouseOver={[Function]}
 >
@@ -21,7 +22,7 @@ exports[`Should Main render correctly 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="#"
     >
       Fantastic Beasts: The Crimes of Grindelwald
     </a>

@@ -1,19 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import FilmsList from './../films-list/films-list.jsx';
+import {genres} from './../../mocks/films.js';
 
-const genres = [`All genres`,
-  `Comedies`,
-  `Crime`,
-  `Documentary`,
-  `Dramas`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thrillers`];
-
-const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
+const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeaderClick, app}) => {
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -71,10 +61,10 @@ const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{titleFilm}</h2>
+              <h2 className="movie-card__title">{promoFilmTitle}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genreFilm}</span>
-                <span className="movie-card__year">{yearFilm}</span>
+                <span className="movie-card__genre">{promoFilmGenre}</span>
+                <span className="movie-card__year">{promoFilmYear}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -110,7 +100,8 @@ const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
           </ul>
 
           <div className="catalog__movies-list">
-            <FilmsList films = {filmsCards}/>
+            <FilmsList films = {filmsData}
+              app = {app} />
           </div>
 
           <div className="catalog__more">
@@ -136,16 +127,26 @@ const Main = ({titleFilm, genreFilm, yearFilm, filmsCards, onHeaderClick}) => {
 };
 
 Main.propTypes = {
-  titleFilm: PropTypes.string.isRequired,
-  genreFilm: PropTypes.string.isRequired,
-  yearFilm: PropTypes.number.isRequired,
-  filmsCards: PropTypes.arrayOf(
+  promoFilmTitle: PropTypes.string.isRequired,
+  promoFilmGenre: PropTypes.string.isRequired,
+  promoFilmYear: PropTypes.number.isRequired,
+  filmsData: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        img: PropTypes.string.isRequired
+        poster: PropTypes.string.isRequired,
+        scoring: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        ratings: PropTypes.number.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+        cardImg: PropTypes.string.isRequired,
       })
   ).isRequired,
   onHeaderClick: PropTypes.func.isRequired,
+  app: PropTypes.object.isRequired
 };
 
 export default Main;

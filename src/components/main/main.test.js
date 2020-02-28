@@ -1,39 +1,64 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import App from "./../app/app.jsx";
 
 const PromoFilm = {
   TITLE: `The Grand Budapest Hotel`,
   GENRE: `Drama`,
   YEAR: 2014
 };
+const promoFilmTitle = PromoFilm.TITLE;
+const promoFilmGenre = PromoFilm.GENRE;
+const promoFilmYear = PromoFilm.YEAR;
 
-const filmsCards = [{
-  title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  img: `img/snatch.jpg`
+const filmsData = [{
+  id: 1,
+  title: `Aviator`,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  scoring: 5,
+  description: `text`,
+  ratings: 100,
+  director: ``,
+  starring: ``,
+  genre: ``,
+  year: 2000,
+  cardImg: `img/aviator.jpg`
 },
 {
-  title: `Bohemian Rhapsody`,
-  img: `img/snatch.jpg`
+  id: 2,
+  title: `Revenant`,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  scoring: 4,
+  description: `text`,
+  ratings: 300,
+  director: ``,
+  starring: ``,
+  genre: ``,
+  year: 2005,
+  cardImg: `img/revenant.jpg`
 },
-{
-  title: `Macbeth`,
-  img: `img/snatch.jpg`
-}
 ];
+
+const onClickFunc = jest.fn();
+
+jest.mock(`./../app/app.jsx`);
+const app = new App({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onClickFunc});
 
 it(`Should Main render correctly`, () => {
   const tree = renderer
-    .create(<Main titleFilm = {
+    .create(<Main promoFilmTitle = {
       PromoFilm.TITLE
     }
-    genreFilm = {
+    promoFilmGenre = {
       PromoFilm.GENRE
     }
-    yearFilm = {
+    promoFilmYear = {
       PromoFilm.YEAR
     }
-    filmsCards = {filmsCards}
+    filmsData = {filmsData}
+    onHeaderClick = {jest.fn()}
+    app = {app}
     />)
     .toJSON();
 
