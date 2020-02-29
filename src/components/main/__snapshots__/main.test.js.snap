@@ -267,6 +267,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             All genres
           </a>
@@ -277,6 +278,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Comedies
           </a>
@@ -287,6 +289,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Crime
           </a>
@@ -297,6 +300,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Documentary
           </a>
@@ -307,6 +311,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Dramas
           </a>
@@ -317,6 +322,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Horror
           </a>
@@ -327,6 +333,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Kids & Family
           </a>
@@ -337,6 +344,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Romance
           </a>
@@ -347,6 +355,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Sci-Fi
           </a>
@@ -357,6 +366,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
+            onClick={[MockFunction]}
           >
             Thrillers
           </a>
@@ -367,6 +377,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -374,9 +385,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="Aviator"
               height="175"
-              src="img/snatch.jpg"
+              src="img/aviator.jpg"
               width="280"
             />
           </div>
@@ -385,14 +396,15 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
-              Fantastic Beasts: The Crimes of Grindelwald
+              Aviator
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -400,9 +412,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Bohemian Rhapsody"
+              alt="Revenant"
               height="175"
-              src="img/snatch.jpg"
+              src="img/revenant.jpg"
               width="280"
             />
           </div>
@@ -411,35 +423,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Macbeth"
-              height="175"
-              src="img/snatch.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Macbeth
+              Revenant
             </a>
           </h3>
         </article>

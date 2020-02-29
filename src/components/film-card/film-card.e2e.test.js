@@ -7,8 +7,17 @@ import {FilmCard} from "./../film-card/film-card.jsx";
 configure({adapter: new Adapter()});
 
 const mock = {
-  title: `one`,
-  img: `pic-one`
+  id: 1,
+  title: `Aviator`,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  scoring: 5,
+  description: `text`,
+  ratings: 100,
+  director: `director`,
+  starring: `actor`,
+  genre: `Drama`,
+  year: 2000,
+  cardImg: `img/aviator.jpg`
 };
 
 
@@ -16,29 +25,51 @@ const mockEvent = {
   preventDefault() {}
 };
 
+const film = {
+  id: 1,
+  title: `Aviator`,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  scoring: 5,
+  description: `text`,
+  ratings: 100,
+  director: `director`,
+  starring: `actor`,
+  genre: `Drama`,
+  year: 2000,
+  cardImg: `img/aviator.jpg`
+};
+
+const card = mock;
+const onMouseOver = jest.fn();
+onMouseOver.mockReturnValue(jest.fn());
+const onMouseOut = jest.fn();
+const onClick = jest.fn();
+onClick.mockReturnValue(jest.fn());
+
+const screen = shallow(<FilmCard
+  title = {film.title}
+  img = {film.cardImg}
+  onMouseOverCard = {onMouseOver(film)}
+  onMouseOutCard = {onMouseOut}
+  onClickCard = {onClick(film)}
+  key = {0}
+/>);
+
+const cards = screen.find(`.small-movie-card`);
+const cardOne = cards.at(0);
 
 it(`Hover on card of film should pass to the callback data-object from which this card was created`, () => {
-  const card = mock;
-  const onMouseOver = jest.fn();
-  const onMouseOut = jest.fn();
-  const film = {
-    title: `one`,
-    img: `pic-one`,
-  };
-
-  const screen = shallow(<FilmCard
-    title = {film.title}
-    img = {film.img}
-    onMouseOverCard = {onMouseOver(film)}
-    onMouseOutCard = {onMouseOut}
-    key = {0}
-  />);
-
-  const cards = screen.find(`.small-movie-card`);
-  const cardOne = cards.at(0);
 
   cardOne.simulate(`mouseover`, mockEvent);
 
   expect(onMouseOver).toHaveBeenCalledTimes(1);
   expect(onMouseOver.mock.calls[0][0]).toMatchObject(card);
+});
+
+it(`Click on card of film should pass to the callback data-object from which this card was created`, () => {
+
+  cardOne.simulate(`click`, mockEvent);
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick.mock.calls[0][0]).toMatchObject(card);
 });

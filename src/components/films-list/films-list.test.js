@@ -4,7 +4,7 @@ import FilmsList from "./films-list.jsx";
 
 const films = [{
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
+  cardImg: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
 }
 ];
 

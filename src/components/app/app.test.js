@@ -8,32 +8,42 @@ const PromoFilm = {
   YEAR: 2014
 };
 
-const filmsCards = [{
-  title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  img: `img/snatch.jpg`
+const filmsData = [{
+  id: 1,
+  title: `Aviator`,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  scoring: 5,
+  description: ``,
+  ratings: 100,
+  director: ``,
+  starring: ``,
+  genre: ``,
+  year: 2000,
+  cardImg: `img/aviator.jpg`
 },
 {
-  title: `Bohemian Rhapsody`,
-  img: `img/snatch.jpg`
+  id: 2,
+  title: `Revenant`,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  scoring: 4,
+  description: ``,
+  ratings: 300,
+  director: ``,
+  starring: ``,
+  genre: ``,
+  year: 2005,
+  cardImg: `img/revenant.jpg`
 },
-{
-  title: `Macbeth`,
-  img: `img/snatch.jpg`
-}
 ];
 
 it(`Render App`, () => {
   const tree = renderer
-    .create(<App title = {
-      PromoFilm.TITLE
-    }
-    genre = {
-      PromoFilm.GENRE
-    }
-    year = {
-      PromoFilm.YEAR
-    }
-    cards = {filmsCards}
+    .create(<App promoFilmTitle = {PromoFilm.TITLE}
+      promoFilmGenre = {PromoFilm.GENRE}
+      promoFilmYear = {PromoFilm.YEAR}
+      filmsData = {filmsData}
+      onClickFunc = {jest.fn()}
+      app = {null}
     />)
     .toJSON();
 

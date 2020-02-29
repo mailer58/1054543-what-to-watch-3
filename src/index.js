@@ -1,21 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-import {PromoFilm, films} from "./mocks/films.js";
+import {PromoFilm, films, getFilmsData} from "./mocks/films.js";
 
 const onHeaderClick = () => {};
 
+const filmsData = getFilmsData(films);
+
 ReactDOM.render(<
-  App title = {
+  App promoFilmTitle = {
     PromoFilm.TITLE
   }
-  genre = {
+  promoFilmGenre = {
     PromoFilm.GENRE
   }
-  year = {
+  promoFilmYear = {
     PromoFilm.YEAR
   }
-  cards = {films}
+  filmsData = {filmsData}
   onClickFunc = {onHeaderClick}
 />,
 document.querySelector(`#root`)
