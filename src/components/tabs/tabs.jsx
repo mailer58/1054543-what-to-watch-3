@@ -20,7 +20,9 @@ class Tabs extends PureComponent {
   _onTabClick(evt) {
     evt.preventDefault();
     const tab = evt.target.dataset.tab;
-    this.setState({activeTab: tab});
+    if (tab !== this.state.activeTab) {
+      this.setState({activeTab: tab});
+    }
   }
 
   render() {
