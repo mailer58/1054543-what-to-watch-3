@@ -17,7 +17,8 @@ const mock = {
   starring: `actor`,
   genre: `Drama`,
   year: 2000,
-  cardImg: `img/aviator.jpg`
+  cardImg: `img/aviator.jpg`,
+  src: `http`
 };
 
 
@@ -36,7 +37,8 @@ const film = {
   starring: `actor`,
   genre: `Drama`,
   year: 2000,
-  cardImg: `img/aviator.jpg`
+  cardImg: `img/aviator.jpg`,
+  src: `http`
 };
 
 const card = mock;
@@ -47,8 +49,10 @@ const onClick = jest.fn();
 onClick.mockReturnValue(jest.fn());
 
 const screen = shallow(<FilmCard
+  isActive = {false}
   title = {film.title}
   img = {film.cardImg}
+  video = {film.src}
   onMouseOverCard = {onMouseOver(film)}
   onMouseOutCard = {onMouseOut}
   onClickCard = {onClick(film)}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import FilmsList from './../films-list/films-list.jsx';
+import {FilmsList} from './../films-list/films-list.jsx';
 import {genres} from './../../mocks/films.js';
 
 const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeaderClick, app}) => {

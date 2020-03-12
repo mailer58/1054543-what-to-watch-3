@@ -19,7 +19,8 @@ const filmsData = [{
   starring: ``,
   genre: ``,
   year: 2000,
-  cardImg: `img/aviator.jpg`
+  cardImg: `img/aviator.jpg`,
+  src: `http`
 },
 {
   id: 2,
@@ -32,7 +33,8 @@ const filmsData = [{
   starring: ``,
   genre: ``,
   year: 2005,
-  cardImg: `img/revenant.jpg`
+  cardImg: `img/revenant.jpg`,
+  src: `http`
 },
 ];
 

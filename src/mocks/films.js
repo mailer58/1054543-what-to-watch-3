@@ -23,6 +23,9 @@ export const genres = [`All genres`,
   `Sci-Fi`,
   `Thrillers`];
 
+const links = [`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`];
+
 export const films = [{
   id: 1,
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -105,7 +108,8 @@ export const getFilmsData = (movies) => {
           starring: actors[getRandomInteger(0, actors.length - 1)],
           genre: genres[getRandomInteger(0, actors.length - 1)],
           year: getRandomInteger(2000, 2019),
-          cardImg: film.img
+          cardImg: film.img,
+          src: links[getRandomInteger(0, 1)]
         }
       );
     })
