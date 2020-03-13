@@ -6,6 +6,9 @@ import {FilmCard} from './../../components/film-card/film-card.jsx';
 
 configure({adapter: new Adapter()});
 
+
+const PLAYING_DELAY = 1000;
+
 const filmData = {
   id: 1,
   title: `Aviator`,
@@ -18,22 +21,33 @@ const filmData = {
   genre: ``,
   year: 2000,
   cardImg: `img/aviator.jpg`,
-  src: `http`
+  src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
 };
+
+
+window.HTMLMediaElement.prototype.play = () => {};
+window.HTMLMediaElement.prototype.pause = () => {};
 
 it(`test`, () => {
   const FilmCardWrapped = withFilmCard(FilmCard);
   const wrapper = mount(<FilmCardWrapped
     filmData = {filmData}
-    app = {{}}
+    renderScreens = {jest.fn()}
   />);
 
-  window.HTMLMediaElement.prototype.play = () => {};
-  wrapper.simulate(`mouseover`);
+  const filmCard = wrapper.find(`FilmCard`);
 
-  const player = wrapper.find(`video`);
-  jest.spyOn(player, `play`);
+  const video = wrapper.find(`WithVideoPlayer`).instance()[`_videoRef`][`current`];
+  jest.spyOn(video, `play`);
 
-  expect(player.play).toHaveBeenCalledTimes(1);
+  filmCard.simulate(`mouseover`); // trigger playing
+  wrapper.find(`WithVideoPlayer`).instance().componentDidUpdate();
+
+  jest.setTimeout(PLAYING_DELAY);
+
+  const isPlaying = wrapper.find(`WithVideoPlayer`).instance()[`state`][`isPlaying`];
+  expect(isPlaying).toBe(true);
+
+  expect(video.play).toHaveBeenCalledTimes(1);
 
 });

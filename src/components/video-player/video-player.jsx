@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const VideoPlayer = ({videoRef, src, poster}) => {
-  return <video ref={videoRef} src={src} width="280" height="175" poster={poster} controls="controls"></video>;
+  return <video ref={videoRef} src={src} width="280" height="175" poster={poster}></video>;
 };
 
 VideoPlayer.propTypes = {

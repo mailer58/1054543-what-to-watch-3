@@ -5,36 +5,45 @@ const PLAYING_DELAY = 1000;
 
 const withVideoPlayer = (Component) => {
   class WithVideoPlayer extends PureComponent {
-    constructor({videoSrc, poster, isVideoPlaying}) {
+    constructor(props) {
       super();
 
       this.state = {
-        isPlaying: isVideoPlaying,
+        isPlaying: false,
       };
 
-      this._src = videoSrc;
-      this._poster = poster;
-      this._video = null;
+      this._src = props.videoSrc;
+      this._poster = props.poster;
 
       this._videoRef = createRef();
+      this._video = null;
 
-      this._interval = null;
+      this._timeout = null;
     }
 
-    componentDidMount() {
-      this._video = this._videoRef.current;
-
-      if (this.state.isPlaying) {
-        this._interval = setTimeout(() => {
-          this._video.play();
-          this._video.muted = true;
-        }, PLAYING_DELAY);
+    static getDerivedStateFromProps(nextProps, prevState) {
+      if (nextProps.isVideoPlaying !== prevState.isPlaying) {
+        return {isPlaying: nextProps.isVideoPlaying};
+      } else {
+        return null;
       }
     }
 
-    componentWillUnmount() {
-      clearTimeout(this._interval);
-      this._video = null;
+    componentDidUpdate() {
+      if (this.state.isPlaying) {
+        this._video = this._videoRef.current;
+        this._timeout = setTimeout(() => {
+          this._video.play();
+          this._video.muted = true;
+        }, PLAYING_DELAY);
+      } else {
+        if (this._timeout) {
+          clearTimeout(this._timeout);
+        }
+        this._video.currentTime = 0;
+        this._video.pause();
+        this._video.load(); // with the purpose of showing of a poster
+      }
     }
 
     render() {

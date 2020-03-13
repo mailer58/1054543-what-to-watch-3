@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {FilmsList} from './../films-list/films-list.jsx';
 import {genres} from './../../mocks/films.js';
 
-const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeaderClick, app}) => {
+const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeaderClick, renderScreens}) => {
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -101,7 +101,7 @@ const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeade
 
           <div className="catalog__movies-list">
             <FilmsList films = {filmsData}
-              app = {app} />
+              renderScreens = {renderScreens} />
           </div>
 
           <div className="catalog__more">
@@ -146,7 +146,7 @@ Main.propTypes = {
       })
   ).isRequired,
   onHeaderClick: PropTypes.func.isRequired,
-  app: PropTypes.object.isRequired
+  renderScreens: PropTypes.func.isRequired
 };
 
 export default Main;

@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 
 const withFilmCard = (Component) => {
   class WithFilmCard extends PureComponent {
-    constructor({filmData, app}) {
+    constructor({filmData, renderScreens}) {
       super();
       this.state = {
         isActive: false
       };
 
       this._filmData = filmData;
-      this._app = app;
+      this._renderScreens = renderScreens;
 
       this._onClickCard = this._onClickCard.bind(this, this._filmData);
       this._onMouseOverCard = this._onMouseOverCard.bind(this, this._filmData);
@@ -27,11 +27,7 @@ const withFilmCard = (Component) => {
     }
 
     _onClickCard(film) {
-      // set data of film for app component:
-      this._app.film = film;
-
-      // change a screen:
-      this._app.setState({screen: Screens.MOVIE});
+      this._renderScreens(Screens.MOVIE, film);
     }
 
     render() {
@@ -62,7 +58,7 @@ const withFilmCard = (Component) => {
       cardImg: PropTypes.string,
       src: PropTypes.string
     }).isRequired,
-    app: PropTypes.object.isRequired
+    renderScreens: PropTypes.func.isRequired
   };
 
   return WithFilmCard;

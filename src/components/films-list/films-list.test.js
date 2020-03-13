@@ -13,7 +13,7 @@ it(`Should Main render correctly`, () => {
   const tree = renderer
     .create(<FilmsList
       films = {films}
-      app = {{}}
+      renderScreens = {jest.fn()}
     />)
     .toJSON();
 

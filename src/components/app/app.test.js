@@ -45,7 +45,7 @@ it(`Render App`, () => {
       promoFilmYear = {PromoFilm.YEAR}
       filmsData = {filmsData}
       onClickFunc = {jest.fn()}
-      app = {null}
+      renderScreens = {jest.fn()}
     />)
     .toJSON();
 

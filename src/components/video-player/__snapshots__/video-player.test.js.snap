@@ -2,7 +2,6 @@
 
 exports[`Should VideoPlayer render correctly 1`] = `
 <video
-  controls="controls"
   height="175"
   poster=""
   src=""

@@ -5,11 +5,11 @@ import {FilmCard} from './../../components/film-card/film-card.jsx';
 
 const FilmCardWrapped = withFilmCard(FilmCard);
 
-export const FilmsList = (({films, app}) => {
+export const FilmsList = (({films, renderScreens}) => {
   return (
     films.map((film, index) => {
       return (<FilmCardWrapped filmData = {film}
-        app = {app}
+        renderScreens = {renderScreens}
         key = {index}
       />);
     })
@@ -33,5 +33,5 @@ FilmsList.propTypes = {
         cardImg: PropTypes.string,
       })
   ).isRequired,
-  app: PropTypes.object
+  renderScreens: PropTypes.func
 };

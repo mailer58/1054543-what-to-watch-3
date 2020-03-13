@@ -8,7 +8,6 @@ import {Screens} from './../../const.js';
 class App extends PureComponent {
   constructor({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onClickFunc}) {
     super();
-    this.app = this;
     this.state = {
       screen: Screens.MAIN,
     };
@@ -25,9 +24,15 @@ class App extends PureComponent {
 
     // a data of clicked film:
     this.film = null;
+
+    this.renderScreens = this.renderScreens.bind(this);
   }
 
-  _renderScreens() {
+  renderScreens(screenType, film) {
+    if (screenType && film) {
+      this.setState({screen: screenType});
+      this.film = film;
+    }
     if (this.state.screen === Screens.MAIN) {
       return (
         <Main promoFilmTitle = {this.promoFilmTitle}
@@ -35,7 +40,7 @@ class App extends PureComponent {
           promoFilmYear = {this.promoFilmYear}
           filmsData = {this.filmsData}
           onHeaderClick = {this.onClickFunc}
-          app = {this.app}
+          renderScreens = {this.renderScreens}
         />);
     }
     if (this.state.screen === Screens.MOVIE) {
@@ -63,7 +68,7 @@ class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderScreens()}
+            {this.renderScreens()}
           </Route>
           <Route exact path="/movie">
             <MoviePage />

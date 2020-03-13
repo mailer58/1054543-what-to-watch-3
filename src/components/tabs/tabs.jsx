@@ -1,5 +1,4 @@
-import React, {PureComponent, createRef} from 'react';
-import PropTypes from "prop-types";
+import React, {PureComponent} from 'react';
 
 const TabsList = {
   OVERVIEW: `Overview`,
