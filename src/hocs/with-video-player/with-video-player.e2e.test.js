@@ -6,9 +6,6 @@ import {FilmCard} from './../../components/film-card/film-card.jsx';
 
 configure({adapter: new Adapter()});
 
-
-const PLAYING_DELAY = 1000;
-
 const filmData = {
   id: 1,
   title: `Aviator`,
@@ -27,8 +24,9 @@ const filmData = {
 
 window.HTMLMediaElement.prototype.play = () => {};
 window.HTMLMediaElement.prototype.pause = () => {};
+window.HTMLMediaElement.prototype.load = () => {};
 
-it(`test`, () => {
+it(`Test state of playing and pause`, () => {
   const FilmCardWrapped = withFilmCard(FilmCard);
   const wrapper = mount(<FilmCardWrapped
     filmData = {filmData}
@@ -37,15 +35,15 @@ it(`test`, () => {
 
   const filmCard = wrapper.find(`FilmCard`);
 
-  const video = wrapper.find(`WithVideoPlayer`).instance()[`_videoRef`][`current`];
-  jest.spyOn(video, `play`);
-
   filmCard.simulate(`mouseover`); // trigger playing
   wrapper.find(`WithVideoPlayer`).instance().componentDidUpdate();
 
-  jest.setTimeout(PLAYING_DELAY);
-
-  const isPlaying = wrapper.find(`WithVideoPlayer`).instance()[`state`][`isPlaying`];
+  let isPlaying = wrapper.find(`WithVideoPlayer`).instance()[`state`][`isPlaying`];
   expect(isPlaying).toBe(true);
 
+  filmCard.simulate(`mouseout`); // trigger stop of playing
+  wrapper.find(`WithVideoPlayer`).instance().componentDidUpdate();
+
+  isPlaying = wrapper.find(`WithVideoPlayer`).instance()[`state`][`isPlaying`];
+  expect(isPlaying).toBe(false);
 });

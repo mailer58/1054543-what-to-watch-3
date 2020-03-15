@@ -132,7 +132,7 @@ export const getFilmsData = (movies) => {
       const randomReviews = [];
       const reviewersCopy = reviewers.slice();
       const reviewersArrLength = getRandomInteger(0, reviewersCopy.length - 1);
-      if (reviewersArrLength) {
+      if (reviewersArrLength > 0) {
         for (let i = 0; i < reviewersArrLength; i++) {
           const randomInteger = getRandomInteger(0, actorsCopy.length - 1);
           const randomReviewer = reviewersCopy[randomInteger];
