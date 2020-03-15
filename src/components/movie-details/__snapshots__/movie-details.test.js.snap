@@ -209,7 +209,7 @@ Array [
                 width="19"
               >
                 <use
-                  xmlnsXlink="#play-s"
+                  xlinkHref="#play-s"
                 />
               </svg>
               <span>
@@ -226,7 +226,7 @@ Array [
                 width="19"
               >
                 <use
-                  xmlnsXlink="#add"
+                  xlinkHref="#add"
                 />
               </svg>
               <span>
