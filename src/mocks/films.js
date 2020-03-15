@@ -10,7 +10,31 @@ const RANDOM_ARR_LENGTHS = {
 };
 
 const directors = [`Guy Ritchie`, `James Cameron`, `Ridley Scott`, `Quentin Tarantino`];
-const actors = [`Keanu Reeves`, `Arnold Schwarzenegger`, `Naomi Scott`, `Emilia Clarke`];
+const actors = [`Keanu Reeves`,
+  `Arnold Schwarzenegger`,
+  `Naomi Scott`,
+  `Emilia Clarke`,
+  `Bill Murray`,
+  `Edward Norton`,
+  `Jude Law`,
+  `Willem Dafoe`,
+  `Saoirse Ronan`,
+  `Tony Revoloru`,
+  `Tilda Swinton`,
+  `Tom Wilkinson`,
+  `Owen Wilkinson`,
+  `Adrien Brody`,
+  `Ralph Fiennes`,
+  `Jeff Goldblum`
+];
+
+const reviewers = [
+  `Kate Muir`,
+  `Matthew Lickona`,
+  `Bill Goodykoontz`,
+  `Paula Fleri-Soler`,
+  `Amanda Greever`
+];
 
 export const genres = [`All genres`,
   `Comedies`,
@@ -96,6 +120,31 @@ const getRandomText = () => {
 export const getFilmsData = (movies) => {
   return (
     movies.map((film)=> {
+      const actorsCopy = actors.slice();
+      const arrayLength = getRandomInteger(actorsCopy.length - 5, actorsCopy.length - 1);
+      const randomActors = [];
+      for (let i = 0; i < arrayLength; i++) {
+        const randomInteger = getRandomInteger(0, actorsCopy.length - 1);
+        randomActors.push(actorsCopy[randomInteger]);
+        actorsCopy.splice(randomInteger, 1);
+      }
+      // get reviews:
+      const randomReviews = [];
+      const reviewersCopy = reviewers.slice();
+      const reviewersArrLength = getRandomInteger(0, reviewersCopy.length - 1);
+      if (reviewersArrLength) {
+        for (let i = 0; i < reviewersArrLength; i++) {
+          const randomInteger = getRandomInteger(0, actorsCopy.length - 1);
+          const randomReviewer = reviewersCopy[randomInteger];
+          reviewersCopy.splice(randomInteger, 1);
+          randomReviews.push({
+            review: getRandomText(),
+            author: randomReviewer,
+            date: `December ` + getRandomInteger(1, 31) + `, 2016`,
+            scoring: getRandomInteger(0, 9) + `,` + getRandomInteger(0, 9),
+          });
+        }
+      }
       return (
         {
           id: film.id,
@@ -105,11 +154,13 @@ export const getFilmsData = (movies) => {
           description: getRandomText(),
           ratings: getRandomInteger(500, 1000),
           director: directors[getRandomInteger(0, directors.length - 1)],
-          starring: actors[getRandomInteger(0, actors.length - 1)],
-          genre: genres[getRandomInteger(0, actors.length - 1)],
+          starring: randomActors,
+          genre: genres[getRandomInteger(0, genres.length - 1)],
           year: getRandomInteger(2000, 2019),
           cardImg: film.img,
-          src: links[getRandomInteger(0, 1)]
+          src: links[getRandomInteger(0, 1)],
+          duration: getRandomInteger(1, 2) + `h ` + getRandomInteger(10, 59) + ` m`,
+          reviews: randomReviews
         }
       );
     })

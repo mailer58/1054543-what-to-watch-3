@@ -9,7 +9,7 @@ const films = [{
 }
 ];
 
-it(`Should Main render correctly`, () => {
+it(`Should FilmsList render correctly`, () => {
   const tree = renderer
     .create(<FilmsList
       films = {films}

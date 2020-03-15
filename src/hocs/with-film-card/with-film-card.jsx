@@ -27,7 +27,7 @@ const withFilmCard = (Component) => {
     }
 
     _onClickCard(film) {
-      this._renderScreens(Screens.MOVIE, film);
+      this._renderScreens(Screens.OVERVIEW, film);
     }
 
     render() {
@@ -52,7 +52,7 @@ const withFilmCard = (Component) => {
       description: PropTypes.string,
       ratings: PropTypes.number,
       director: PropTypes.string,
-      starring: PropTypes.string,
+      starring: PropTypes.array,
       genre: PropTypes.string,
       year: PropTypes.number,
       cardImg: PropTypes.string,

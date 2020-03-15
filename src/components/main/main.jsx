@@ -139,7 +139,7 @@ Main.propTypes = {
         description: PropTypes.string.isRequired,
         ratings: PropTypes.number.isRequired,
         director: PropTypes.string.isRequired,
-        starring: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired,
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         cardImg: PropTypes.string.isRequired,

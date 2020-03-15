@@ -1,4 +1,6 @@
 export const Screens = {
-  MAIN: `main`,
-  MOVIE: `movie`,
+  MAIN: `Main`,
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEW: `Review`
 };

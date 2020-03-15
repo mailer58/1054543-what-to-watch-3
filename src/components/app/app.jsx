@@ -1,9 +1,11 @@
 import React, {PureComponent} from 'react';
 import Main from '../main/main.jsx';
-import {MoviePage} from './../movie-page/movie-page.jsx';
+import {MovieOverview} from './../movie-overview/movie-overview.jsx';
+import {MovieDetails} from './../movie-details/movie-details.jsx';
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Screens} from './../../const.js';
+import {MovieReviews} from '../movie-reviews/movie-reviews.jsx';
 
 class App extends PureComponent {
   constructor({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onClickFunc}) {
@@ -43,20 +45,30 @@ class App extends PureComponent {
           renderScreens = {this.renderScreens}
         />);
     }
-    if (this.state.screen === Screens.MOVIE) {
+    if (this.state.screen === Screens.OVERVIEW) {
       return (
-        <MoviePage
-          id = {this.film.id}
-          title = {this.film.title}
-          poster = {this.film.poster}
-          scoring = {this.film.scoring}
-          description = {this.film.description}
-          ratings = {this.film.ratings}
-          director = {this.film.director}
-          starring = {this.film.starring}
-          genre = {this.film.genre}
-          year = {this.film.year}
-          cardImg = {this.film.cardImg}
+        <MovieOverview
+          film = {this.film}
+          renderScreens = {this.renderScreens}
+          tab = {Screens.OVERVIEW}
+        />
+      );
+    }
+    if (this.state.screen === Screens.DETAILS) {
+      return (
+        <MovieDetails
+          film = {this.film}
+          renderScreens = {this.renderScreens}
+          tab = {Screens.DETAILS}
+        />
+      );
+    }
+    if (this.state.screen === Screens.REVIEW) {
+      return (
+        <MovieReviews
+          film = {this.film}
+          renderScreens = {this.renderScreens}
+          tab = {Screens.REVIEW}
         />
       );
     }
@@ -71,7 +83,7 @@ class App extends PureComponent {
             {this.renderScreens()}
           </Route>
           <Route exact path="/movie">
-            <MoviePage />
+            <MovieOverview />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -92,7 +104,7 @@ App.propTypes = {
         description: PropTypes.string.isRequired,
         ratings: PropTypes.number.isRequired,
         director: PropTypes.string.isRequired,
-        starring: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired,
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         cardImg: PropTypes.string.isRequired,

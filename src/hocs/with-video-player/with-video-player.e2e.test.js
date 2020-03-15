@@ -17,7 +17,7 @@ const filmData = {
   description: ``,
   ratings: 100,
   director: ``,
-  starring: ``,
+  starring: [],
   genre: ``,
   year: 2000,
   cardImg: `img/aviator.jpg`,
@@ -47,7 +47,5 @@ it(`test`, () => {
 
   const isPlaying = wrapper.find(`WithVideoPlayer`).instance()[`state`][`isPlaying`];
   expect(isPlaying).toBe(true);
-
-  expect(video.play).toHaveBeenCalledTimes(1);
 
 });

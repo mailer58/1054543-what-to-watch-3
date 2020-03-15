@@ -27,7 +27,7 @@ FilmsList.propTypes = {
         description: PropTypes.string,
         ratings: PropTypes.number,
         director: PropTypes.string,
-        starring: PropTypes.string,
+        starring: PropTypes.array,
         genre: PropTypes.string,
         year: PropTypes.number,
         cardImg: PropTypes.string,
