@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import FilmsList from './../films-list/films-list.jsx';
+import {FilmsList} from './../films-list/films-list.jsx';
 import {genres} from './../../mocks/films.js';
 
-const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeaderClick, app}) => {
+const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeaderClick, renderScreens}) => {
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -101,7 +101,7 @@ const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeade
 
           <div className="catalog__movies-list">
             <FilmsList films = {filmsData}
-              app = {app} />
+              renderScreens = {renderScreens} />
           </div>
 
           <div className="catalog__more">
@@ -139,14 +139,14 @@ Main.propTypes = {
         description: PropTypes.string.isRequired,
         ratings: PropTypes.number.isRequired,
         director: PropTypes.string.isRequired,
-        starring: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired,
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         cardImg: PropTypes.string.isRequired,
       })
   ).isRequired,
   onHeaderClick: PropTypes.func.isRequired,
-  app: PropTypes.object.isRequired
+  renderScreens: PropTypes.func.isRequired
 };
 
 export default Main;

@@ -16,10 +16,11 @@ const filmsData = [{
   description: ``,
   ratings: 100,
   director: ``,
-  starring: ``,
+  starring: [],
   genre: ``,
   year: 2000,
-  cardImg: `img/aviator.jpg`
+  cardImg: `img/aviator.jpg`,
+  src: `http`
 },
 {
   id: 2,
@@ -29,10 +30,11 @@ const filmsData = [{
   description: ``,
   ratings: 300,
   director: ``,
-  starring: ``,
+  starring: [],
   genre: ``,
   year: 2005,
-  cardImg: `img/revenant.jpg`
+  cardImg: `img/revenant.jpg`,
+  src: `http`
 },
 ];
 
@@ -43,7 +45,7 @@ it(`Render App`, () => {
       promoFilmYear = {PromoFilm.YEAR}
       filmsData = {filmsData}
       onClickFunc = {jest.fn()}
-      app = {null}
+      renderScreens = {jest.fn()}
     />)
     .toJSON();
 
