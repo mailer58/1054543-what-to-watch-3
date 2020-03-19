@@ -120,8 +120,7 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="The Grand Budapest Hotel"
-          src="img/bg-the-grand-budapest-hotel.jpg"
+          alt="Fantastic Beasts: The Crimes of Grindelwald"
         />
       </div>
       <h1
@@ -253,7 +252,7 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="Fantastic Beasts: The Crimes of Grindelwald poster"
             height="327"
             src=""
             width="218"

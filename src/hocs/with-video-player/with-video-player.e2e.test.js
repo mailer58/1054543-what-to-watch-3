@@ -8,17 +8,17 @@ configure({adapter: new Adapter()});
 
 const filmData = {
   id: 1,
-  title: `Aviator`,
-  poster: `img/the-grand-budapest-hotel-poster.jpg`,
-  scoring: 5,
+  name: `Aviator`,
+  posterImage: `img/the-grand-budapest-hotel-posterImage.jpg`,
+  rating: 5,
   description: ``,
-  ratings: 100,
+  scoresCount: 100,
   director: ``,
   starring: [],
   genre: ``,
-  year: 2000,
-  cardImg: `img/aviator.jpg`,
-  src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+  released: 2000,
+  previewImage: `img/aviator.jpg`,
+  previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
 };
 
 

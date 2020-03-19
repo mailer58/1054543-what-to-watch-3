@@ -33,9 +33,9 @@ const withFilmCard = (Component) => {
     render() {
       return <Component
         isActive = {this.state.isActive}
-        title = {this._filmData.title}
-        img = {this._filmData.cardImg}
-        video = {this._filmData.src}
+        name = {this._filmData.name}
+        previewImage = {this._filmData.previewImage}
+        previewVideoLink = {this._filmData.previewVideoLink}
         onClickCard = {this._onClickCard}
         onMouseOverCard = {this._onMouseOverCard}
         onMouseOutCard = {this._onMouseOutCard}
@@ -46,17 +46,17 @@ const withFilmCard = (Component) => {
   WithFilmCard.propTypes = {
     filmData: PropTypes.shape({
       id: PropTypes.number,
-      title: PropTypes.string,
-      poster: PropTypes.string,
-      scoring: PropTypes.number,
+      name: PropTypes.string,
+      posterImage: PropTypes.string,
+      rating: PropTypes.number,
       description: PropTypes.string,
-      ratings: PropTypes.number,
+      scoresCount: PropTypes.number,
       director: PropTypes.string,
       starring: PropTypes.array,
       genre: PropTypes.string,
-      year: PropTypes.number,
-      cardImg: PropTypes.string,
-      src: PropTypes.string
+      released: PropTypes.number,
+      previewImage: PropTypes.string,
+      previewVideoLink: PropTypes.string
     }).isRequired,
     renderScreens: PropTypes.func.isRequired
   };

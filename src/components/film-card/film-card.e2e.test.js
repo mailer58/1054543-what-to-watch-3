@@ -8,17 +8,17 @@ configure({adapter: new Adapter()});
 
 const mock = {
   id: 1,
-  title: `Aviator`,
-  poster: `img/the-grand-budapest-hotel-poster.jpg`,
-  scoring: 5,
+  name: `Aviator`,
+  posterImage: `img/the-grand-budapest-hotel-posterImage.jpg`,
+  rating: 5,
   description: `text`,
-  ratings: 100,
+  scoresCount: 100,
   director: `director`,
   starring: `actor`,
   genre: `Drama`,
-  year: 2000,
-  cardImg: `img/aviator.jpg`,
-  src: `http`
+  released: 2000,
+  previewImage: `img/aviator.jpg`,
+  previewVideoLink: `http`
 };
 
 
@@ -28,17 +28,17 @@ const mockEvent = {
 
 const film = {
   id: 1,
-  title: `Aviator`,
-  poster: `img/the-grand-budapest-hotel-poster.jpg`,
-  scoring: 5,
+  name: `Aviator`,
+  posterImage: `img/the-grand-budapest-hotel-posterImage.jpg`,
+  rating: 5,
   description: `text`,
-  ratings: 100,
+  scoresCount: 100,
   director: `director`,
   starring: `actor`,
   genre: `Drama`,
-  year: 2000,
-  cardImg: `img/aviator.jpg`,
-  src: `http`
+  released: 2000,
+  previewImage: `img/aviator.jpg`,
+  previewVideoLink: `http`
 };
 
 const card = mock;
@@ -50,9 +50,9 @@ onClick.mockReturnValue(jest.fn());
 
 const screen = shallow(<FilmCard
   isActive = {false}
-  title = {film.title}
-  img = {film.cardImg}
-  video = {film.src}
+  name = {film.name}
+  previewImage = {film.previewImage}
+  previewVideoLink = {film.previewVideoLink}
   onMouseOverCard = {onMouseOver(film)}
   onMouseOutCard = {onMouseOut}
   onClickCard = {onClick(film)}

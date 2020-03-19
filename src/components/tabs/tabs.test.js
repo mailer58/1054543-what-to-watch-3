@@ -3,14 +3,14 @@ import renderer from "react-test-renderer";
 import {Tabs} from "./tabs.jsx";
 
 const film = {
-  title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  poster: ``,
-  scoring: 0,
+  name: `Fantastic Beasts: The Crimes of Grindelwald`,
+  posterImage: ``,
+  rating: 0,
   description: ``,
-  ratings: 0,
+  scoresCount: 0,
   director: ``,
   genre: ``,
-  year: 2000,
+  released: 2000,
   starring: [],
   reviews: []
 };

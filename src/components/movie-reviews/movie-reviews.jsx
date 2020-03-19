@@ -8,31 +8,36 @@ import {ReviewsColumn} from './../reviews-colum/reviews-column.jsx';
 
 export const MovieReviews = (props) => {
   const {
-    title,
+    name,
     genre,
-    year,
-    reviews
+    released,
+    posterImage,
+    backgroundImage
   } = props.film;
 
-  const reviewsNumber = reviews.length;
-  let half = reviewsNumber / 2;
+  const comments = props.comments;
 
-  const isNumberEven = reviewsNumber % 2 === 0 ? true : false;
+  const imgAlt = name + ` poster`;
 
-  let firstHalfReviews = [];
-  let secondHalfReviews = [];
+  const commentsNumber = comments.length;
+  let half = commentsNumber / 2;
 
-  if (reviewsNumber > 1) {
+  const isNumberEven = commentsNumber % 2 === 0 ? true : false;
+
+  let firstHalfComments = [];
+  let secondHalfComments = [];
+
+  if (commentsNumber > 1) {
     if (isNumberEven) {
-      firstHalfReviews = reviews.slice(0, half);
-      secondHalfReviews = reviews.slice(half);
+      firstHalfComments = comments.slice(0, half);
+      secondHalfComments = comments.slice(half);
     } else {
       half = Math.ceil(half);
-      firstHalfReviews = reviews.slice(0, half);
-      secondHalfReviews = reviews.slice(half);
+      firstHalfComments = comments.slice(0, half);
+      secondHalfComments = comments.slice(half);
     }
-  } else if (reviewsNumber === 1) {
-    firstHalfReviews = reviews.slice();
+  } else if (commentsNumber === 1) {
+    firstHalfComments = comments.slice();
   }
 
   return (
@@ -41,7 +46,7 @@ export const MovieReviews = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={backgroundImage} alt={name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -50,10 +55,10 @@ export const MovieReviews = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -78,7 +83,8 @@ export const MovieReviews = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={posterImage} alt={imgAlt} width="218" height="327" />
+
             </div>
 
             <div className="movie-card__desc">
@@ -87,8 +93,8 @@ export const MovieReviews = (props) => {
                 tab = {props.tab} />
 
               <div className="movie-card__reviews movie-card__row">
-                <ReviewsColumn halfReviews = {firstHalfReviews} />
-                <ReviewsColumn halfReviews = {secondHalfReviews} />
+                <ReviewsColumn halfReviews = {firstHalfComments} />
+                <ReviewsColumn halfReviews = {secondHalfComments} />
               </div>
             </div>
           </div>
@@ -144,12 +150,26 @@ export const MovieReviews = (props) => {
 
 MovieReviews.propTypes = {
   film: PropTypes.shape({
-    title: PropTypes.string,
+    name: PropTypes.string,
     genre: PropTypes.string,
-    year: PropTypes.number,
-    reviews: PropTypes.array
+    released: PropTypes.number,
+    comments: PropTypes.array,
+    posterImage: PropTypes.string,
+    backgroundImage: PropTypes.string
   }),
   renderScreens: PropTypes.func,
   tab: PropTypes.string,
+  comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        user: PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired
+        }),
+        rating: PropTypes.string.isRequired,
+        comment: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired
+      })
+  ).isRequired
 };
 

@@ -7,13 +7,16 @@ import {Footer} from './../footer/footer.jsx';
 
 export const MovieDetails = (props) => {
   const {
-    title,
-    poster,
+    name,
+    posterImage,
     director,
     genre,
-    year,
-    duration
+    released,
+    runTime,
+    backgroundImage
   } = props.film;
+
+  const imgAlt = name + ` poster`;
   let {starring} = props.film;
   return (
     <React.Fragment>
@@ -21,7 +24,7 @@ export const MovieDetails = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={backgroundImage} alt={name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -30,10 +33,10 @@ export const MovieDetails = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -58,7 +61,7 @@ export const MovieDetails = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={posterImage} alt={imgAlt} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -87,7 +90,7 @@ export const MovieDetails = (props) => {
                 <div className="movie-card__text-col">
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Run Time</strong>
-                    <span className="movie-card__details-value">{duration}</span>
+                    <span className="movie-card__details-value">{runTime}</span>
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Genre</strong>
@@ -95,7 +98,7 @@ export const MovieDetails = (props) => {
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Released</strong>
-                    <span className="movie-card__details-value">{year}</span>
+                    <span className="movie-card__details-value">{released}</span>
                   </p>
                 </div>
               </div>
@@ -154,13 +157,14 @@ export const MovieDetails = (props) => {
 
 MovieDetails.propTypes = {
   film: PropTypes.shape({
-    title: PropTypes.string,
-    poster: PropTypes.string,
+    name: PropTypes.string,
+    posterImage: PropTypes.string,
     director: PropTypes.string,
     starring: PropTypes.array,
     genre: PropTypes.string,
-    year: PropTypes.number,
-    duration: PropTypes.string
+    released: PropTypes.number,
+    runTime: PropTypes.string,
+    backgroundImage: PropTypes.string
   }),
   renderScreens: PropTypes.func,
   tab: PropTypes.string,

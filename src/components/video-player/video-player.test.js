@@ -6,8 +6,8 @@ it(`Should VideoPlayer render correctly`, () => {
   const tree = renderer
     .create(<VideoPlayer
       videoRef = {createRef()}
-      src = {``}
-      poster = {``}
+      previewVideoLink = {``}
+      previewImage = {``}
     />)
     .toJSON();
 

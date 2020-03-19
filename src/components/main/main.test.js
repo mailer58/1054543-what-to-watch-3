@@ -10,31 +10,31 @@ const PromoFilm = {
 
 const filmsData = [{
   id: 1,
-  title: `Aviator`,
-  poster: `img/the-grand-budapest-hotel-poster.jpg`,
-  scoring: 5,
+  name: `Aviator`,
+  posterImage: `img/the-grand-budapest-hotel-posterImage.jpg`,
+  rating: 5,
   description: `text`,
-  ratings: 100,
+  scoresCount: 100,
   director: ``,
   starring: [],
   genre: ``,
-  year: 2000,
-  cardImg: `img/aviator.jpg`,
-  src: `http`
+  released: 2000,
+  previewImage: `img/aviator.jpg`,
+  previewVideoLink: `http`
 },
 {
   id: 2,
-  title: `Revenant`,
-  poster: `img/the-grand-budapest-hotel-poster.jpg`,
-  scoring: 4,
+  name: `Revenant`,
+  posterImage: `img/the-grand-budapest-hotel-posterImage.jpg`,
+  rating: 4,
   description: `text`,
-  ratings: 300,
+  scoresCount: 300,
   director: ``,
   starring: [],
   genre: ``,
-  year: 2005,
-  cardImg: `img/revenant.jpg`,
-  src: `http`
+  released: 2005,
+  previewImage: `img/revenant.jpg`,
+  previewVideoLink: `http`
 },
 ];
 
@@ -50,7 +50,6 @@ it(`Should Main render correctly`, () => {
       PromoFilm.YEAR
     }
     filmsData = {filmsData}
-    onHeaderClick = {jest.fn()}
     renderScreens = {jest.fn()}
     />)
     .toJSON();

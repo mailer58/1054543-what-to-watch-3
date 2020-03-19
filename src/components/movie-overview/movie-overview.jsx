@@ -9,32 +9,35 @@ const NUMBER_OF_ACTORS = 4;
 
 export const MovieOverview = ({film, renderScreens, tab}) => {
   const {
-    title,
-    poster,
-    scoring,
+    name,
+    posterImage,
+    rating,
     description,
-    ratings,
+    scoresCount,
     director,
     genre,
-    year} = film;
+    released,
+    backgroundImage} = film;
 
   let {starring} = film;
-  const rating = ratings + ` ratings`;
+  const scoreCount = scoresCount + ` ratings`;
+
+  const imgAlt = name + ` poster`;
 
   let starringCopy = starring.slice();
   starringCopy.length = starring.length > NUMBER_OF_ACTORS ? NUMBER_OF_ACTORS : starring.length;
   starringCopy = starringCopy.join(`, `) + ` and other`;
 
   let mark;
-  if (scoring >= 0 && scoring < 3) {
+  if (rating >= 0 && rating < 3) {
     mark = `Bad`;
-  } else if (scoring >= 3 && scoring < 5) {
+  } else if (rating >= 3 && rating < 5) {
     mark = `Normal`;
-  } else if (scoring >= 5 && scoring < 8) {
+  } else if (rating >= 5 && rating < 8) {
     mark = `Good`;
-  } else if (scoring >= 8 && scoring < 10) {
+  } else if (rating >= 8 && rating < 10) {
     mark = `Very good`;
-  } else if (scoring === 10) {
+  } else if (rating === 10) {
     mark = `Awesome`;
   }
 
@@ -44,7 +47,7 @@ export const MovieOverview = ({film, renderScreens, tab}) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={backgroundImage} alt={name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -53,10 +56,10 @@ export const MovieOverview = ({film, renderScreens, tab}) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -81,7 +84,7 @@ export const MovieOverview = ({film, renderScreens, tab}) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={posterImage} alt={imgAlt} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -90,10 +93,10 @@ export const MovieOverview = ({film, renderScreens, tab}) => {
                 tab = {tab} />
 
               <div className="movie-rating">
-                <div className="movie-rating__score">{scoring}</div>
+                <div className="movie-rating__score">{rating}</div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">{mark}</span>
-                  <span className="movie-rating__count">{rating}</span>
+                  <span className="movie-rating__count">{scoreCount}</span>
                 </p>
               </div>
 
@@ -157,16 +160,17 @@ export const MovieOverview = ({film, renderScreens, tab}) => {
 
 MovieOverview.propTypes = {
   film: PropTypes.shape({
-    title: PropTypes.string,
-    poster: PropTypes.string,
-    scoring: PropTypes.number,
+    name: PropTypes.string,
+    posterImage: PropTypes.string,
+    rating: PropTypes.number,
     description: PropTypes.string,
-    ratings: PropTypes.number,
+    scoresCount: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
     genre: PropTypes.string,
-    year: PropTypes.number,
-    cardImg: PropTypes.string,
+    released: PropTypes.number,
+    previewImage: PropTypes.string,
+    backgroundImage: PropTypes.string
   }),
   renderScreens: PropTypes.func,
   tab: PropTypes.string,
