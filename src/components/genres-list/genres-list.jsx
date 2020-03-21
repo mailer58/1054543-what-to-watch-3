@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {ActionCreator} from './../../reducer.js';
 
-class GenresListConnected extends PureComponent {
+export class GenresList extends PureComponent {
   constructor(props) {
     super();
     this._changeGenre = props.changeGenre.bind(this);
@@ -51,10 +51,9 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const GenresList = connect(mapStateToProps, mapDispatchToProps)(GenresListConnected);
-export default GenresList;
+export default connect(mapStateToProps, mapDispatchToProps)(GenresList);
 
-GenresListConnected.propTypes = {
+GenresList.propTypes = {
   changeGenre: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired,
   genresList: PropTypes.array.isRequired

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FilmsList from "./films-list.jsx";
+import {FilmsList} from "./films-list.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 
@@ -35,13 +35,13 @@ it(`Should FilmsList render correctly`, () => {
     currentGenre: ListOfGenres.ALL_GENRES
   });
   const tree = renderer
-    .create(<Provider store = {store}>
-      <FilmsList
-        films = {films}
-        renderScreens = {jest.fn()}
-        key = {films[0].id}
-      />
-    </Provider>)
+    .create(
+        <FilmsList
+          films = {films}
+          renderScreens = {jest.fn()}
+          key = {films[0].id}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -8,7 +8,7 @@ import {ListOfGenres} from './../../const.js';
 
 const FilmCardWrapped = withFilmCard(FilmCard);
 
-export const ConnectedFilmsList = (({currentGenre, films, renderScreens}) => {
+export const FilmsList = (({currentGenre, films, renderScreens}) => {
   if (currentGenre === ListOfGenres.ALL_GENRES) {
     return (
       films.map((film) => {
@@ -39,10 +39,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const FilmsList = connect(mapStateToProps)(ConnectedFilmsList);
-export default FilmsList;
+export default connect(mapStateToProps)(FilmsList);
 
-ConnectedFilmsList.propTypes = {
+
+FilmsList.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,

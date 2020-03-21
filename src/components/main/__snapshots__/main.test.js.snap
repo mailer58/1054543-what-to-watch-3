@@ -262,23 +262,13 @@ Array [
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item catalog__genres-item--active"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[MockFunction]}
-          >
-            All genres
-          </a>
-        </li>
-        <li
           className="catalog__genres-item"
         >
           <a
             className="catalog__genres-link"
+            data-genre="Comedies"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Comedies
           </a>
@@ -288,87 +278,11 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Action"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[MockFunction]}
-          >
-            Documentary
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[MockFunction]}
-          >
-            Dramas
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[MockFunction]}
-          >
-            Horror
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[MockFunction]}
-          >
-            Kids & Family
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[MockFunction]}
-          >
-            Romance
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[MockFunction]}
-          >
-            Sci-Fi
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[MockFunction]}
-          >
-            Thrillers
+            Action
           </a>
         </li>
       </ul>
@@ -476,5 +390,6 @@ Array [
       </div>
     </footer>
   </div>,
+  "/",
 ]
 `;

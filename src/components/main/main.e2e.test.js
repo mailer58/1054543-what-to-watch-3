@@ -62,7 +62,7 @@ it(`Should header be pressed`, () => {
         filmsData = {filmsData}
         onHeaderClick={onHeaderClick}
         renderScreens = {jest.fn()}
-
+        genres = {[`All gernes`, `Action`]}
       />
   );
 

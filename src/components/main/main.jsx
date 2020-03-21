@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from "prop-types";
 import FilmsList from './../films-list/films-list.jsx';
 import GenresList from './../genres-list/genres-list.jsx';
-import {store} from '../../index.js';
-import {Provider} from "react-redux";
 
 
 const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, renderScreens, genres}) => {
@@ -92,15 +90,11 @@ const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, renderS
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <Provider store={store}>
             <GenresList genresList = {genres}/>
-          </Provider>
 
           <div className="catalog__movies-list">
-            <Provider store = {store}>
               <FilmsList films = {filmsData}
                 renderScreens = {renderScreens} />
-            </Provider>
           </div>
 
           <div className="catalog__more">
