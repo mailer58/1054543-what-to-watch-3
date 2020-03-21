@@ -1,10 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {FilmsList} from "./films-list.jsx";
-import configureStore from "redux-mock-store";
-import {Provider} from "react-redux";
-
-const mockStore = configureStore([]);
 
 const ListOfGenres = {
   ALL_GENRES: `All genres`,
@@ -31,9 +27,6 @@ const films = [{
 
 
 it(`Should FilmsList render correctly`, () => {
-  const store = mockStore({
-    currentGenre: ListOfGenres.ALL_GENRES
-  });
   const tree = renderer
     .create(
         <FilmsList

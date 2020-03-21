@@ -81,7 +81,6 @@ export const ListOfGenres = {
 const genres = Object.values(ListOfGenres);
 
 it(`Render App`, () => {
-  debugger;
   const store = mockStore({
     screen: Screens.MAIN,
     allFilms: films,

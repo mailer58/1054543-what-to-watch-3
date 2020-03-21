@@ -46,9 +46,6 @@ const filmsData = [{
 ];
 
 const store = mockStore({
-  //screen: Screens.MAIN,
- // allFilms: films,
-  //filmsComments: comments,
   film: {},
   promoFilmTitle: PromoFilm.TITLE,
   promoFilmGenre: PromoFilm.GENRE,

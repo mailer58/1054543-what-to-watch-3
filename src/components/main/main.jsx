@@ -90,11 +90,11 @@ const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, renderS
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-            <GenresList genresList = {genres}/>
+          <GenresList genresList = {genres}/>
 
           <div className="catalog__movies-list">
-              <FilmsList films = {filmsData}
-                renderScreens = {renderScreens} />
+            <FilmsList films = {filmsData}
+              renderScreens = {renderScreens} />
           </div>
 
           <div className="catalog__more">
