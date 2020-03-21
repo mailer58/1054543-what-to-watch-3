@@ -9,7 +9,7 @@ import {MovieReviews} from '../movie-reviews/movie-reviews.jsx';
 import {connect} from "react-redux";
 import {ActionCreator} from './../../reducer.js';
 
-class ConnectedApp extends PureComponent {
+class App extends PureComponent {
   constructor() {
     super();
     this.renderScreens = this.renderScreens.bind(this);
@@ -118,10 +118,10 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const App = connect(mapStateToProps, mapDispatchToProps)(ConnectedApp);
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+export {App};
 
-ConnectedApp.propTypes = {
+App.propTypes = {
   screen: PropTypes.string.isRequired,
   promoFilmTitle: PropTypes.string.isRequired,
   promoFilmGenre: PropTypes.string.isRequired,

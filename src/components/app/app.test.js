@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Screens} from '../../const.js';
@@ -81,27 +81,35 @@ export const ListOfGenres = {
 const genres = Object.values(ListOfGenres);
 
 it(`Render App`, () => {
+  debugger;
   const store = mockStore({
     screen: Screens.MAIN,
     allFilms: films,
     filmsComments: comments,
-    film: {}, // clicked film
+    film: {},
     promoFilmTitle: PromoFilm.TITLE,
     promoFilmGenre: PromoFilm.GENRE,
     promoFilmYear: PromoFilm.YEAR,
     genresList: genres,
     currentGenre: ListOfGenres.ALL_GENRES
   });
+
   const tree = renderer
-    .create(<Provider store = {store}>
-      <App promoFilmTitle = {PromoFilm.TITLE}
-        promoFilmGenre = {PromoFilm.GENRE}
-        promoFilmYear = {PromoFilm.YEAR}
-        filmsData = {films}
-        renderScreens = {jest.fn()}
-        comments = {[]}
-      />
-    </Provider>)
+  .create(<Provider store = {store}>
+    <App
+      promoFilmTitle = {PromoFilm.TITLE}
+      promoFilmGenre = {PromoFilm.GENRE}
+      promoFilmYear = {PromoFilm.YEAR}
+      filmsData = {films}
+      renderScreens = {jest.fn()}
+      comments = {[]}
+    />
+  </Provider>,
+  {
+    createNodeMock: () => {
+      return {};
+    }
+  })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

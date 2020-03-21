@@ -5,7 +5,7 @@ import withVideoPlayer from './../../hocs/with-video-player/with-video-player.js
 
 const VideoPlayerWrapped = withVideoPlayer(VideoPlayer);
 
-export const FilmCard = ({isActive, name, previewImage, previewVideoLink, onClickCard, onMouseOverCard, onMouseOutCard}) => {
+export const FilmCard = React.memo(({isActive, name, previewImage, previewVideoLink, onClickCard, onMouseOverCard, onMouseOutCard}) => {
   return (<article onClick={onClickCard} onMouseOver={onMouseOverCard} onMouseOut={onMouseOutCard} className="small-movie-card catalog__movies-card">
     <div className="small-movie-card__image">
       <VideoPlayerWrapped previewVideoLink = {previewVideoLink}
@@ -18,7 +18,9 @@ export const FilmCard = ({isActive, name, previewImage, previewVideoLink, onClic
       </h3>
     }
   </article>);
-};
+}
+);
+FilmCard.displayName = `FilmCard`;
 
 FilmCard.propTypes = {
   isActive: PropTypes.bool.isRequired,
