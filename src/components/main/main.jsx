@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {FilmsList} from './../films-list/films-list.jsx';
-import {genres} from './../../mocks/films.js';
+import FilmsList from './../films-list/films-list.jsx';
+import GenresList from './../genres-list/genres-list.jsx';
 
-const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeaderClick, renderScreens}) => {
+
+const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, renderScreens, genres}) => {
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -89,15 +90,7 @@ const Main = ({promoFilmTitle, promoFilmGenre, promoFilmYear, filmsData, onHeade
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            {genres.map((genre, index) => {
-              return (<li key ={index} className={genre === `All genres` ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}>
-                <a href="#" className="catalog__genres-link" onClick={onHeaderClick}>{genre}</a>
-              </li>);
-            })
-            }
-          </ul>
+          <GenresList genresList = {genres}/>
 
           <div className="catalog__movies-list">
             <FilmsList films = {filmsData}
@@ -133,21 +126,22 @@ Main.propTypes = {
   filmsData: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        scoring: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        posterImage: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
         description: PropTypes.string.isRequired,
-        ratings: PropTypes.number.isRequired,
+        scoresCount: PropTypes.number.isRequired,
         director: PropTypes.string.isRequired,
         starring: PropTypes.array.isRequired,
         genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        cardImg: PropTypes.string.isRequired,
+        released: PropTypes.number.isRequired,
+        previewImage: PropTypes.string.isRequired,
       })
   ).isRequired,
-  onHeaderClick: PropTypes.func.isRequired,
-  renderScreens: PropTypes.func.isRequired
+  renderScreens: PropTypes.func.isRequired,
+  genres: PropTypes.array.isRequired
 };
 
 export default Main;
+
 

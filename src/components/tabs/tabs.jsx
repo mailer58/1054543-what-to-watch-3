@@ -36,9 +36,9 @@ const onTabClick = (propsFilm, propsRenderScreens, propsTab, evt) => {
 
 Tabs.propTypes = {
   film: PropTypes.shape({
-    title: PropTypes.string,
+    name: PropTypes.string,
     genre: PropTypes.string,
-    year: PropTypes.number,
+    released: PropTypes.number,
     reviews: PropTypes.array
   }),
   renderScreens: PropTypes.func,

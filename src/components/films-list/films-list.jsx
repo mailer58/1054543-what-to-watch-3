@@ -2,35 +2,60 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withFilmCard from './../../hocs/with-film-card/with-film-card.jsx';
 import {FilmCard} from './../../components/film-card/film-card.jsx';
+import {connect} from "react-redux";
+import {ListOfGenres} from './../../const.js';
+
 
 const FilmCardWrapped = withFilmCard(FilmCard);
 
-export const FilmsList = (({films, renderScreens}) => {
-  return (
-    films.map((film, index) => {
-      return (<FilmCardWrapped filmData = {film}
-        renderScreens = {renderScreens}
-        key = {index}
-      />);
-    })
-  );
+export const FilmsList = (({currentGenre, films, renderScreens}) => {
+  if (currentGenre === ListOfGenres.ALL_GENRES) {
+    return (
+      films.map((film) => {
+        return (<FilmCardWrapped filmData = {film}
+          renderScreens = {renderScreens}
+          key = {film.id}
+        />);
+      })
+    );
+  } else {
+    const filteredFilms = films.filter((film) => {
+      return film.genre === currentGenre;
+    });
+    return (
+      filteredFilms.map((film) => {
+        return (<FilmCardWrapped filmData = {film}
+          renderScreens = {renderScreens}
+          key = {film.id}
+        />);
+      })
+    );
+  }
 });
+
+const mapStateToProps = (state) => {
+  return {
+    currentGenre: state.currentGenre
+  };
+};
+
+export default connect(mapStateToProps)(FilmsList);
 
 
 FilmsList.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
-        title: PropTypes.string,
-        poster: PropTypes.string,
-        scoring: PropTypes.number,
+        name: PropTypes.string,
+        posterImage: PropTypes.string,
+        rating: PropTypes.number,
         description: PropTypes.string,
-        ratings: PropTypes.number,
+        scoresCount: PropTypes.number,
         director: PropTypes.string,
         starring: PropTypes.array,
         genre: PropTypes.string,
-        year: PropTypes.number,
-        cardImg: PropTypes.string,
+        released: PropTypes.number,
+        previewImage: PropTypes.string,
       })
   ).isRequired,
   renderScreens: PropTypes.func

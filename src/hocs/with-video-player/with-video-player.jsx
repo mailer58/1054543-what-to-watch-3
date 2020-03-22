@@ -5,15 +5,15 @@ const PLAYING_DELAY = 1000;
 
 const withVideoPlayer = (Component) => {
   class WithVideoPlayer extends PureComponent {
-    constructor(props) {
+    constructor(filmData) {
       super();
 
       this.state = {
         isPlaying: false,
       };
 
-      this._src = props.videoSrc;
-      this._poster = props.poster;
+      this._previewVideoLink = filmData.previewVideoLink;
+      this._poster = filmData.previewImage;
 
       this._videoRef = createRef();
       this._video = null;
@@ -42,22 +42,22 @@ const withVideoPlayer = (Component) => {
         }
         this._video.currentTime = 0;
         this._video.pause();
-        this._video.load(); // with the purpose of showing of a poster
+        this._video.load(); // with the purpose of showing of a posterImage
       }
     }
 
     render() {
       return <Component
         videoRef = {this._videoRef}
-        src = {this._src}
-        poster = {this._poster}
+        previewVideoLink = {this._previewVideoLink}
+        previewImage = {this._poster}
       />;
     }
   }
 
   WithVideoPlayer.propTypes = {
-    videoSrc: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     isVideoPlaying: PropTypes.bool.isRequired,
   };
 

@@ -1,24 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-import {PromoFilm, films, getFilmsData} from "./mocks/films.js";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 
-const onHeaderClick = () => {};
+import {reducer} from "./reducer.js";
 
-const filmsData = getFilmsData(films);
+export const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
 
-ReactDOM.render(<
-  App promoFilmTitle = {
-    PromoFilm.TITLE
-  }
-  promoFilmGenre = {
-    PromoFilm.GENRE
-  }
-  promoFilmYear = {
-    PromoFilm.YEAR
-  }
-  filmsData = {filmsData}
-  onClickFunc = {onHeaderClick}
-/>,
-document.querySelector(`#root`)
+ReactDOM.render(
+    <Provider store={store}>
+      <App/> </Provider>,
+    document.querySelector(`#root`) || document.createElement(`div`)
 );

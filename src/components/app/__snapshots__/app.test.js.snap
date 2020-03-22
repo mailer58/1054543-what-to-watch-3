@@ -266,8 +266,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="All genres"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             All genres
           </a>
@@ -277,8 +278,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Comedies"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Comedies
           </a>
@@ -288,8 +290,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Crime"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Crime
           </a>
@@ -299,8 +302,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Documentary"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Documentary
           </a>
@@ -310,8 +314,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Dramas"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Dramas
           </a>
@@ -321,8 +326,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Horror"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Horror
           </a>
@@ -332,8 +338,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Kids & Family"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Kids & Family
           </a>
@@ -343,8 +350,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Romance"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Romance
           </a>
@@ -354,8 +362,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Sci-Fi"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Sci-Fi
           </a>
@@ -365,8 +374,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-genre="Thrillers"
             href="#"
-            onClick={[MockFunction]}
+            onClick={[Function]}
           >
             Thrillers
           </a>

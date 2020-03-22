@@ -12,22 +12,30 @@ exports[`Should ReviewsColumn render correctly 1`] = `
     >
       <p
         className="review__text"
-      />
+      >
+        text
+      </p>
       <footer
         className="review__details"
       >
         <cite
           className="review__author"
-        />
+        >
+          name
+        </cite>
         <time
           className="review__date"
           dateTime="2016-12-20"
-        />
+        >
+          December
+        </time>
       </footer>
     </blockquote>
     <div
       className="review__rating"
-    />
+    >
+      0
+    </div>
   </div>
 </div>
 `;

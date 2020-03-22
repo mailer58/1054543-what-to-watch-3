@@ -36,7 +36,7 @@ const reviewers = [
   `Amanda Greever`
 ];
 
-export const genres = [`All genres`,
+const genres = [
   `Comedies`,
   `Crime`,
   `Documentary`,
@@ -52,42 +52,42 @@ const links = [`https://download.blender.org/durian/trailer/sintel_trailer-480p.
 
 export const films = [{
   id: 1,
-  title: `Fantastic Beasts: The Crimes of Grindelwald`,
+  name: `Fantastic Beasts: The Crimes of Grindelwald`,
   img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
 },
 {
   id: 2,
-  title: `Bohemian Rhapsody`,
+  name: `Bohemian Rhapsody`,
   img: `img/bohemian-rhapsody.jpg`
 },
 {
   id: 3,
-  title: `Macbeth`,
+  name: `Macbeth`,
   img: `img/macbeth.jpg`
 },
 {
   id: 4,
-  title: `Aviator`,
+  name: `Aviator`,
   img: `img/aviator.jpg`
 },
 {
   id: 5,
-  title: `We need to talk about Kevin`,
+  name: `We need to talk about Kevin`,
   img: `img/we-need-to-talk-about-kevin.jpg`
 },
 {
   id: 6,
-  title: `What We Do in the Shadows`,
+  name: `What We Do in the Shadows`,
   img: `img/what-we-do-in-the-shadows.jpg`
 },
 {
   id: 7,
-  title: `Revenant`,
+  name: `Revenant`,
   img: `img/revenant.jpg`
 },
 {
   id: 8,
-  title: `Johnny English`,
+  name: `Johnny English`,
   img: `img/shutter-island.jpg`
 },
 ];
@@ -141,28 +141,62 @@ export const getFilmsData = (movies) => {
             review: getRandomText(),
             author: randomReviewer,
             date: `December ` + getRandomInteger(1, 31) + `, 2016`,
-            scoring: getRandomInteger(0, 9) + `,` + getRandomInteger(0, 9),
+            rating: getRandomInteger(0, 9) + `,` + getRandomInteger(0, 9),
           });
         }
       }
       return (
         {
           id: film.id,
-          title: film.title,
-          poster: `img/the-grand-budapest-hotel-poster.jpg`,
-          scoring: getRandomInteger(0, 10),
+          name: film.name,
+          posterImage: `img/the-grand-budapest-hotel-poster.jpg`,
+          previewImage: film.img,
+          backgroundImage: `img/bg-the-grand-budapest-hotel.jpg`,
+          backgroundColor: `#ffffff`,
+          videoLink: `http:`,
+          previewVideoLink: links[getRandomInteger(0, 1)],
           description: getRandomText(),
-          ratings: getRandomInteger(500, 1000),
+          rating: getRandomInteger(0, 10),
+          scoresCount: getRandomInteger(500, 1000),
           director: directors[getRandomInteger(0, directors.length - 1)],
           starring: randomActors,
+          runTime: getRandomInteger(1, 2) + `h ` + getRandomInteger(10, 59) + ` m`,
           genre: genres[getRandomInteger(0, genres.length - 1)],
-          year: getRandomInteger(2000, 2019),
-          cardImg: film.img,
-          src: links[getRandomInteger(0, 1)],
-          duration: getRandomInteger(1, 2) + `h ` + getRandomInteger(10, 59) + ` m`,
-          reviews: randomReviews
+          released: getRandomInteger(2000, 2019),
+          isVaforite: false,
+          reviews: randomReviews,
         }
       );
     })
   );
 };
+
+export const getRandomComments = (movies) => {
+  const comments = [];
+  movies.map((film) => {
+    const randomReviewers = [];
+    const reviewersCopy = reviewers.slice();
+    const arrayLength = getRandomInteger(0, reviewers.length - 1);
+    for (let i = 0; i < arrayLength; i++) {
+      const randomInteger = getRandomInteger(0, reviewersCopy.length - 1);
+      randomReviewers.push(reviewersCopy[randomInteger]);
+      reviewersCopy.splice(randomInteger, 1);
+    }
+    randomReviewers.forEach((randomReviewer) => {
+      comments.push(
+          {
+            id: film.id,
+            user: {
+              id: getRandomInteger(0, 100),
+              name: randomReviewer,
+            },
+            rating: getRandomInteger(0, 9) + `,` + getRandomInteger(0, 9),
+            comment: getRandomText(),
+            date: `December ` + getRandomInteger(1, 31) + `, 2016`,
+          }
+      );
+    });
+  });
+  return comments;
+};
+
