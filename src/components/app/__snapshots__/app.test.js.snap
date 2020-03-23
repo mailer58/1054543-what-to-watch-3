@@ -266,7 +266,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="All genres"
             href="#"
             onClick={[Function]}
           >
@@ -278,7 +277,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Comedies"
             href="#"
             onClick={[Function]}
           >
@@ -290,7 +288,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Crime"
             href="#"
             onClick={[Function]}
           >
@@ -302,7 +299,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Documentary"
             href="#"
             onClick={[Function]}
           >
@@ -314,7 +310,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Dramas"
             href="#"
             onClick={[Function]}
           >
@@ -326,7 +321,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Horror"
             href="#"
             onClick={[Function]}
           >
@@ -338,7 +332,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Kids & Family"
             href="#"
             onClick={[Function]}
           >
@@ -350,7 +343,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Romance"
             href="#"
             onClick={[Function]}
           >
@@ -362,7 +354,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Sci-Fi"
             href="#"
             onClick={[Function]}
           >
@@ -374,7 +365,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Thrillers"
             href="#"
             onClick={[Function]}
           >
