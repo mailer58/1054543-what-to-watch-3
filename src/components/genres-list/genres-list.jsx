@@ -13,12 +13,14 @@ export class GenresList extends PureComponent {
     this.onClickFunctions = [];
   }
 
-  onLinkClick(genre, evt) {
-    evt.preventDefault();
-    if (genre !== this.state.currentGenre) {
-      this.setState({currentGenre: genre});
-    }
-    this._changeGenre(genre); // change redux store
+  onLinkClick(genre) {
+    return (evt) => {
+      evt.preventDefault();
+      if (genre !== this.state.currentGenre) {
+        this.setState({currentGenre: genre});
+      }
+      this._changeGenre(genre); // change redux store
+    };
   }
 
   render() {
@@ -30,7 +32,7 @@ export class GenresList extends PureComponent {
         const isActive = genre === this.state.currentGenre ? true : false;
         if (this.onClickFunctions.length === 0) {
           genresList.forEach((item) => {
-            this.onClickFunctions.push(this.onLinkClick.bind(null, item));
+            this.onClickFunctions.push(this.onLinkClick(item));
           });
         }
         return (
