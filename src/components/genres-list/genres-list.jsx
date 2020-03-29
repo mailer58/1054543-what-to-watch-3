@@ -2,38 +2,46 @@ import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {ActionCreator} from './../../reducer.js';
+import {Genre} from './../genre/genre.jsx';
 
 export class GenresList extends PureComponent {
   constructor(props) {
     super();
+    this.state = {currentGenre: `All genres`};
+    this.onLinkClick = this.onLinkClick.bind(this);
     this._changeGenre = props.changeGenre.bind(this);
-    this._onClick = this._onClick.bind(this);
+    this.onClickFunctions = [];
   }
 
-  _onClick(evt) {
-    evt.preventDefault();
-    const clickedGenre = evt.target.dataset.genre;
-    if (clickedGenre !== this.props.currentGenre) {
-      this._changeGenre(clickedGenre); // change redux store
-    }
+  onLinkClick(genre) {
+    return (evt) => {
+      evt.preventDefault();
+      if (genre !== this.state.currentGenre) {
+        this.setState({currentGenre: genre});
+      }
+      this._changeGenre(genre); // change redux store
+    };
   }
+
   render() {
     const {
-      currentGenre,
       genresList,
     } = this.props;
     return (
-      <ul className="catalog__genres-list">
-        {genresList.map((genre, index) => {
-          const isActiveGenre = genre === currentGenre ? `catalog__genres-item catalog__genres-item--active`
-            : `catalog__genres-item`;
-          return (
-            <li key={index} className={isActiveGenre}>
-              <a onClick={this._onClick} href="#" className="catalog__genres-link" data-genre={genre}>{genre}</a>
-            </li>);
-        })
+      genresList.map((genre, index) => {
+        const isActive = genre === this.state.currentGenre ? true : false;
+        if (this.onClickFunctions.length === 0) {
+          genresList.forEach((item) => {
+            this.onClickFunctions.push(this.onLinkClick(item));
+          });
         }
-      </ul>
+        return (
+          <Genre key = {genre}
+            isActive = {isActive}
+            genre = {genre}
+            onLinkClick = {this.onClickFunctions[index]}
+          />);
+      })
     );
   }
 }
@@ -41,7 +49,6 @@ export class GenresList extends PureComponent {
 const mapStateToProps = (state) => {
   return {
     genresList: state.genresList,
-    currentGenre: state.currentGenre
   };
 };
 
@@ -55,7 +62,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(GenresList);
 
 GenresList.propTypes = {
   changeGenre: PropTypes.func.isRequired,
-  currentGenre: PropTypes.string.isRequired,
   genresList: PropTypes.array.isRequired
 };
 

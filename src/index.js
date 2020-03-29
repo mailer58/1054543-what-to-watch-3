@@ -6,7 +6,7 @@ import {Provider} from "react-redux";
 
 import {reducer} from "./reducer.js";
 
-export const store = createStore(
+const store = createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );
@@ -14,5 +14,5 @@ export const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
       <App/> </Provider>,
-    document.querySelector(`#root`) || document.createElement(`div`)
+    document.querySelector(`#root`)
 );

@@ -266,7 +266,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Comedies"
             href="#"
             onClick={[Function]}
           >
@@ -278,7 +277,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            data-genre="Action"
             href="#"
             onClick={[Function]}
           >
