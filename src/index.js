@@ -25,7 +25,8 @@ store.dispatch(DataOperation.loadPromoFilm(api));
 
 ReactDOM.render(
     <Provider store={store}>
-      <App/> </Provider>,
+      <App api = {api}/>
+    </Provider>,
     document.querySelector(`#root`)
 );
 

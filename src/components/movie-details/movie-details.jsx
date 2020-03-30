@@ -70,7 +70,8 @@ export const MovieDetails = (props) => {
             <div className="movie-card__desc">
               <Tabs film = {props.film}
                 renderScreens = {props.renderScreens}
-                tab = {props.tab} />
+                tab = {props.tab}
+                api = {props.api} />
               <div className="movie-card__text movie-card__row">
                 <div className="movie-card__text-col">
                   <p className="movie-card__details-item">
@@ -140,11 +141,12 @@ MovieDetails.propTypes = {
     starring: PropTypes.array,
     genre: PropTypes.string,
     released: PropTypes.number,
-    runTime: PropTypes.string,
+    runTime: PropTypes.number,
     backgroundImage: PropTypes.string
   }),
   renderScreens: PropTypes.func,
   tab: PropTypes.string,
   similarFilms: PropTypes.array,
+  api: PropTypes.func
 };
 

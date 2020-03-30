@@ -76,7 +76,7 @@ it(`Render App`, () => {
 
   const tree = renderer
   .create(<Provider store = {store}>
-    <App />
+    <App api = {{}} />
   </Provider>)
     .toJSON();
 

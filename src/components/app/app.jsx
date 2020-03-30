@@ -23,7 +23,8 @@ class App extends PureComponent {
       promoFilm,
       film,
       changeScreen,
-      genres
+      genres,
+      api
     } = this.props;
 
     if (screenType && clickedFilm) {
@@ -45,6 +46,7 @@ class App extends PureComponent {
           film = {film}
           renderScreens = {this.renderScreens}
           tab = {Screens.OVERVIEW}
+          api = {api}
         />
       );
     }
@@ -55,6 +57,7 @@ class App extends PureComponent {
           film = {film}
           renderScreens = {this.renderScreens}
           tab = {Screens.DETAILS}
+          api = {api}
         />
       );
     }
@@ -65,6 +68,7 @@ class App extends PureComponent {
           film = {film}
           renderScreens = {this.renderScreens}
           tab = {Screens.REVIEW}
+          api = {api}
         />
       );
     }
@@ -127,5 +131,6 @@ App.propTypes = {
   onMouseOverFunc: PropTypes.func,
   changeScreen: PropTypes.func.isRequired,
   film: PropTypes.object.isRequired,
-  genres: PropTypes.array.isRequired
+  genres: PropTypes.array.isRequired,
+  api: PropTypes.func.isRequired
 };

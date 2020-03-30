@@ -93,7 +93,8 @@ const MovieReviews = (props) => {
             <div className="movie-card__desc">
               <Tabs film = {props.film}
                 renderScreens ={props.renderScreens}
-                tab = {props.tab} />
+                tab = {props.tab}
+                api = {props.api}/>
 
               <div className="movie-card__reviews movie-card__row">
                 <ReviewsColumn halfReviews = {firstHalfComments} />
@@ -145,11 +146,12 @@ MovieReviews.propTypes = {
           id: PropTypes.number.isRequired,
           name: PropTypes.string.isRequired
         }),
-        rating: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
         comment: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired
       })
   ).isRequired,
   similarFilms: PropTypes.array,
+  api: PropTypes.func
 };
 

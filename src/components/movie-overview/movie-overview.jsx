@@ -103,7 +103,8 @@ export const MovieOverview = (props) => {
             <div className="movie-card__desc">
               <Tabs film = {props.film}
                 renderScreens ={props.renderScreens}
-                tab = {props.tab} />
+                tab = {props.tab}
+                api = {props.api} />
 
               <div className="movie-rating">
                 <div className="movie-rating__score">{rating}</div>
@@ -182,6 +183,7 @@ MovieOverview.propTypes = {
   changeGenre: PropTypes.func,
   changeNumberPreviews: PropTypes.func,
   similarFilms: PropTypes.array,
+  api: PropTypes.func
 };
 
 
