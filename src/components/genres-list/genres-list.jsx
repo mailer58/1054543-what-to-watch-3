@@ -22,13 +22,8 @@ export class GenresList extends PureComponent {
       evt.preventDefault();
       if (genre !== this.state.currentGenre) {
         this.setState({currentGenre: genre});
-
         this._changeGenre(genre); // change redux store
       }
-
-      }
-      this._changeGenre(genre); // change redux store
-
     };
   }
 
@@ -36,7 +31,6 @@ export class GenresList extends PureComponent {
     const {
       films,
     } = this.props;
-
 
     // get genres from films:
     if (films.length && !this.genres.length) { // films loaded
@@ -72,24 +66,6 @@ export class GenresList extends PureComponent {
       );
     }
     return null;
-=======
-    return (
-      genresList.map((genre, index) => {
-        const isActive = genre === this.state.currentGenre ? true : false;
-        if (this.onClickFunctions.length === 0) {
-          genresList.forEach((item) => {
-            this.onClickFunctions.push(this.onLinkClick(item));
-          });
-        }
-        return (
-          <Genre key = {genre}
-            isActive = {isActive}
-            genre = {genre}
-            onLinkClick = {this.onClickFunctions[index]}
-          />);
-      })
-    );
-
   }
 }
 
