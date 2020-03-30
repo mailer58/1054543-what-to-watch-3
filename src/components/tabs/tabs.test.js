@@ -1,6 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Tabs} from "./tabs.jsx";
+import Tabs from "./tabs.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+
+const mockStore = configureStore([]);
 
 const film = {
   name: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -16,10 +20,19 @@ const film = {
 };
 
 it(`Should Tabs render correctly`, () => {
+  const store = mockStore({
+    LOADING_DATA: {
+      allFilms: [],
+      promoFilm: {},
+      comments: [],
+    }
+  });
   const tree = renderer
-    .create(<Tabs film = {film}
-      renderScreens ={jest.fn()}
-      tab = {`Overview`} />
+    .create(<Provider store = {store}>
+      <Tabs film = {film}
+        renderScreens ={jest.fn()}
+        tab = {`Overview`} />
+    </Provider>
     )
     .toJSON();
 

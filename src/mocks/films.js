@@ -1,9 +1,3 @@
-export const PromoFilm = {
-  TITLE: `The Grand Budapest Hotel`,
-  GENRE: `Drama`,
-  YEAR: 2014
-};
-
 const RANDOM_ARR_LENGTHS = {
   MIN: 1,
   MAX: 3

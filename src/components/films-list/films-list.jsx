@@ -3,47 +3,70 @@ import PropTypes from 'prop-types';
 import withFilmCard from './../../hocs/with-film-card/with-film-card.jsx';
 import {FilmCard} from './../../components/film-card/film-card.jsx';
 import {connect} from "react-redux";
-import {ListOfGenres} from './../../const.js';
-
+import {filterFilmsByGenre, getSimilarFilms, getFilms} from '../../reducer/loading-data/selectors.js';
+import {getNumberPreviews, getScreen, getGenre} from '../../reducer/app-state/selectors.js';
+import {Screens} from '../../const.js';
 
 const FilmCardWrapped = withFilmCard(FilmCard);
 
-export const FilmsList = (({currentGenre, films, renderScreens}) => {
-  if (currentGenre === ListOfGenres.ALL_GENRES) {
-    return (
-      films.map((film) => {
-        return (<FilmCardWrapped filmData = {film}
-          renderScreens = {renderScreens}
-          key = {film.id}
-        />);
-      })
-    );
-  } else {
-    const filteredFilms = films.filter((film) => {
-      return film.genre === currentGenre;
-    });
-    return (
-      filteredFilms.map((film) => {
-        return (<FilmCardWrapped filmData = {film}
-          renderScreens = {renderScreens}
-          key = {film.id}
-        />);
-      })
-    );
+const FilmsList = (props) => {
+  const {
+    screen, // redux
+    allFilms, // redux
+    filmsByGenre, // redux
+    similarFilms, // redux
+    renderScreens,
+    numberPreviews, // redux
+    currentGenre, // redux
+  } = props;
+
+  let films;
+
+  if (screen === Screens.MAIN && currentGenre === `All genres`) {
+    films = allFilms.slice();
+    films.length = getArrayLength(allFilms, numberPreviews);
+
+  } else if (screen === Screens.MAIN && currentGenre !== `All genres`) {
+    films = filmsByGenre.slice();
+    films.length = getArrayLength(filmsByGenre, numberPreviews);
+
+  } else if (screen !== Screens.Main) {
+    films = similarFilms.slice();
+    films.length = getArrayLength(similarFilms, numberPreviews);
   }
-});
+
+  return (
+    films.map((film) => {
+      return (<FilmCardWrapped filmData = {film}
+        renderScreens = {renderScreens}
+        key = {film.id}
+      />);
+    })
+  );
+};
+
 
 const mapStateToProps = (state) => {
   return {
-    currentGenre: state.currentGenre
+    screen: getScreen(state),
+    allFilms: getFilms(state),
+    filmsByGenre: filterFilmsByGenre(state),
+    similarFilms: getSimilarFilms(state),
+    numberPreviews: getNumberPreviews(state),
+    currentGenre: getGenre(state)
   };
 };
 
 export default connect(mapStateToProps)(FilmsList);
+export {FilmsList};
+
+const getArrayLength = (arr, numberPreviews) => {
+  return arr.length > numberPreviews ? numberPreviews : arr.length;
+};
 
 
 FilmsList.propTypes = {
-  films: PropTypes.arrayOf(
+  allFilms: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,

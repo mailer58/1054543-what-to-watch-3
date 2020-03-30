@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import MovieOverview from "./movie-overview.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Screens} from './../../const.js';
@@ -59,28 +59,39 @@ const promo = {
   isVaforite: false,
 };
 
-const store = mockStore({
-  LOADING_DATA: {
-    promoFilm: promo,
-    allFilms: films,
-  },
-  APP_STATE: {
-    screen: Screens.MAIN,
-    genresList: genres,
-    currentGenre: `All genres`
-  }
-});
+const film = {
+  name: `Fantastic Beasts: The Crimes of Grindelwald`,
+  posterImage: ``,
+  rating: 0,
+  description: ``,
+  scoresCount: 0,
+  director: ``,
+  genre: ``,
+  released: 2000,
+  starring: []
+};
 
-it(`Should Main render correctly`, () => {
+it(`Should MovieOverview render correctly`, () => {
+
+  const store = mockStore({
+    LOADING_DATA: {
+      promoFilm: promo,
+      allFilms: films,
+    },
+    APP_STATE: {
+      screen: Screens.MAIN,
+      genresList: genres,
+      currentGenre: `All genres`
+    }
+  });
   const tree = renderer
-    .create(
-        <Provider store = {store}>
-          <Main
-            promoFilm = {promo}
-            renderScreens = {jest.fn()}
-            genres = {genres}
-          />
-        </Provider>)
+    .create(<Provider store={store}>
+      <MovieOverview
+        film = {film}
+        renderScreens = {jest.fn()}
+        tab = {`Overview`}
+      />
+    </Provider>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

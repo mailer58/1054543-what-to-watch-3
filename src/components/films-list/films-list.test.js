@@ -1,21 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {FilmsList} from "./films-list.jsx";
+import FilmsList from "./films-list.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {Screens} from './../../const.js';
 
-const ListOfGenres = {
-  ALL_GENRES: `All genres`,
-  COMEDIES: `Comedies`,
-  CRIME: `Crime`,
-  DOCUMENTARY: `Documentary`,
-  DRAMAS: `Dramas`,
-  HORROR: `Horror`,
-  KIDS_AND_FAMILY: `Kids & Family`,
-  ROMANCE: `Romance`,
-  SCIFI: `Sci-Fi`,
-  THRILLERS: `Thrillers`
-};
+const mockStore = configureStore([]);
+const MAX_NUMBER_PREVIEWS = 8;
 
-export const genres = Object.values(ListOfGenres);
 
 const films = [{
   id: 1,
@@ -27,13 +19,23 @@ const films = [{
 
 
 it(`Should FilmsList render correctly`, () => {
+  const store = mockStore({
+    LOADING_DATA: {
+      allFilms: films
+    },
+    APP_STATE: {
+      screen: Screens.MAIN,
+      numberPreviews: MAX_NUMBER_PREVIEWS,
+      currentGenre: `All genres`
+    }
+  });
   const tree = renderer
-    .create(
-        <FilmsList
-          films = {films}
-          renderScreens = {jest.fn()}
-          key = {films[0].id}
-        />
+    .create(<Provider store = {store}>
+      <FilmsList
+        renderScreens = {jest.fn()}
+        key = {films[0].id}
+      />
+    </Provider>
     )
     .toJSON();
 
