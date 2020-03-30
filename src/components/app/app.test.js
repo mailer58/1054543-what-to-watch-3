@@ -7,6 +7,28 @@ import {Screens} from '../../const.js';
 
 const mockStore = configureStore([]);
 
+const MAX_NUMBER_PREVIEWS = 8;
+
+const promo = {
+  id: 1,
+  name: `Midnight Special`,
+  posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Midnight_Special.jpg`,
+  previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/midnight-special.jpg`,
+  backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Midnight_Special.jpg`,
+  backgroundColor: `#828585`,
+  videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+  previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  description: `A father and son go on the run, pursued by the government and a cult drawn to the child's special powers.`,
+  rating: 3.3,
+  scoresCount: 67815,
+  director: `Jeff Nichols`,
+  starring: [`Michael Shannon`, `Joel Edgerton`, `Kirsten Dunst `],
+  runTime: 112,
+  genre: `Action`,
+  released: 2016,
+  isVaforite: false,
+};
+
 const films = [{
   id: 1,
   name: `Aviator`,
@@ -37,78 +59,25 @@ const films = [{
 },
 ];
 
-const PromoFilm = {
-  TITLE: `The Grand Budapest Hotel`,
-  GENRE: `Drama`,
-  YEAR: 2014
-};
-
-const comments = [{
-  id: 1,
-  user: {
-    id: 1,
-    name: `Kate Muir`,
-  },
-  rating: `5,5`,
-  comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-  date: `December `
-},
-{
-  id: 2,
-  user: {
-    id: 1,
-    name: `Matthew Lickona`,
-  },
-  rating: `2,0`,
-  comment: `Cras aliquet varius magna, non porta ligula feugiat eget.`,
-  date: `November `
-}
-];
-
-export const ListOfGenres = {
-  ALL_GENRES: `All genres`,
-  COMEDIES: `Comedies`,
-  CRIME: `Crime`,
-  DOCUMENTARY: `Documentary`,
-  DRAMAS: `Dramas`,
-  HORROR: `Horror`,
-  KIDS_AND_FAMILY: `Kids & Family`,
-  ROMANCE: `Romance`,
-  SCIFI: `Sci-Fi`,
-  THRILLERS: `Thrillers`
-};
-
-const genres = Object.values(ListOfGenres);
 
 it(`Render App`, () => {
   const store = mockStore({
-    screen: Screens.MAIN,
-    allFilms: films,
-    filmsComments: comments,
-    film: {},
-    promoFilmTitle: PromoFilm.TITLE,
-    promoFilmGenre: PromoFilm.GENRE,
-    promoFilmYear: PromoFilm.YEAR,
-    genresList: genres,
-    currentGenre: ListOfGenres.ALL_GENRES
+    LOADING_DATA: {
+      allFilms: films,
+      promoFilm: promo
+    },
+    APP_STATE: {
+      screen: Screens.MAIN,
+      numberPreviews: MAX_NUMBER_PREVIEWS,
+      currentGenre: `All genres`,
+      genresList: [`All genres`, `Drama`]
+    }
   });
 
   const tree = renderer
   .create(<Provider store = {store}>
-    <App
-      promoFilmTitle = {PromoFilm.TITLE}
-      promoFilmGenre = {PromoFilm.GENRE}
-      promoFilmYear = {PromoFilm.YEAR}
-      filmsData = {films}
-      renderScreens = {jest.fn()}
-      comments = {[]}
-    />
-  </Provider>,
-  {
-    createNodeMock: () => {
-      return {};
-    }
-  })
+    <App />
+  </Provider>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

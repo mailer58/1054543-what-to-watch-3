@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {Tabs} from './../tabs/tabs.jsx';
+import Tabs from './../tabs/tabs.jsx';
 import {HiddenTopDiv} from './../hidden-top-div/hidden-top-div.jsx';
 import {PageHeader} from './../page-header/page-header.jsx';
 import {Footer} from './../footer/footer.jsx';
+import FilmsList from './../films-list/films-list.jsx';
+import {ActionCreator} from './../../reducer/app-state/app-state.js';
+import {ActionCreator as CommentsActionCreator} from './../../reducer/loading-data/loading-data.js';
+import {connect} from "react-redux";
+import {getSimilarFilms} from './../../reducer/loading-data/selectors.js';
 
 const NUMBER_OF_ACTORS = 4;
+const MAX_PREVIEWS_NUMBER = 4;
 
-export const MovieOverview = ({film, renderScreens, tab}) => {
+export const MovieOverview = (props) => {
   const {
     name,
     posterImage,
@@ -17,9 +23,16 @@ export const MovieOverview = ({film, renderScreens, tab}) => {
     director,
     genre,
     released,
-    backgroundImage} = film;
+    backgroundImage} = props.film;
 
-  let {starring} = film;
+  props.resetComments(); // avoid momentary showing previous comments
+
+  // for the FilmsList component:
+  props.changeFilm(props.film);
+  props.changeGenre(genre);
+  props.changeNumberPreviews(MAX_PREVIEWS_NUMBER);
+
+  let {starring} = props.film;
   const scoreCount = scoresCount + ` ratings`;
 
   const imgAlt = name + ` poster`;
@@ -88,9 +101,9 @@ export const MovieOverview = ({film, renderScreens, tab}) => {
             </div>
 
             <div className="movie-card__desc">
-              <Tabs film = {film}
-                renderScreens ={renderScreens}
-                tab = {tab} />
+              <Tabs film = {props.film}
+                renderScreens ={props.renderScreens}
+                tab = {props.tab} />
 
               <div className="movie-rating">
                 <div className="movie-rating__score">{rating}</div>
@@ -111,55 +124,45 @@ export const MovieOverview = ({film, renderScreens, tab}) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
+        {props.similarFilms.length ? <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
+            <FilmsList renderScreens = {props.renderScreens} />
           </div>
-        </section>
+        </section> : null}
         <Footer />
       </div>
 
     </React.Fragment>);
 };
 
+const mapStateToProps = (state) => {
+  return {
+    similarFilms: getSimilarFilms(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  changeNumberPreviews(newNumber) {
+    dispatch(ActionCreator.changeNumberPreviews(newNumber));
+  },
+  changeFilm(film) {
+    dispatch(ActionCreator.changeFilm(film));
+  },
+  changeGenre(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+  },
+  resetComments() {
+    dispatch(CommentsActionCreator.resetComments());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieOverview);
+
 MovieOverview.propTypes = {
   film: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     posterImage: PropTypes.string,
     rating: PropTypes.number,
@@ -174,6 +177,11 @@ MovieOverview.propTypes = {
   }),
   renderScreens: PropTypes.func,
   tab: PropTypes.string,
+  resetComments: PropTypes.func,
+  changeFilm: PropTypes.func,
+  changeGenre: PropTypes.func,
+  changeNumberPreviews: PropTypes.func,
+  similarFilms: PropTypes.array,
 };
 
 
