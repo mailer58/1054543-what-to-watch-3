@@ -13,22 +13,17 @@ const initialState = {
 export const ActionType = {
   CHANGING_SCREEN: `CHANGING_SCREEN`,
   CHANGING_GENRE: `CHANGING_GENRE`,
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   RESET_NUMBER_PREVIEWS: `RESET_NUMBER_PREVIEWS`,
   CHANGE_NUMBER_PREVIEWS: `CHANGE_NUMBER_PREVIEWS`,
   CHANGE_FILM: `CHANGE_FILM`
 };
 
 export const ActionCreator = {
-  changeScreen: (newScreen, newFilm) => {
-    const obj = Object.assign({},
-        {screen: newScreen},
-        {film: newFilm}
-    );
-    return ({
+  changeScreen: (newScreen) => {
+    return {
       type: ActionType.CHANGING_SCREEN,
-      payload: obj
-    });
+      payload: newScreen
+    };
   },
   changeGenre: (genre) => {
     return {
@@ -60,16 +55,16 @@ export const ActionCreator = {
       payload: film
     };
   },
-
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+
     case ActionType.CHANGING_SCREEN:
       return Object.assign({}, state, {
-        screen: action.payload.screen}, {
-        film: action.payload.film}
+        screen: action.payload}
       );
+
     case ActionType.CHANGING_GENRE:
       return Object.assign({}, state, {
         currentGenre: action.payload

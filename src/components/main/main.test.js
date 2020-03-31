@@ -4,6 +4,7 @@ import Main from "./main.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Screens} from './../../const.js';
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -68,6 +69,9 @@ const store = mockStore({
     screen: Screens.MAIN,
     genresList: genres,
     currentGenre: `All genres`
+  },
+  USER: {
+    authorizationStatus: AuthorizationStatus.NO_AUTH
   }
 });
 

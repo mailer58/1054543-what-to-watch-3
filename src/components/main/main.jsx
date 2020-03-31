@@ -4,6 +4,7 @@ import FilmsList from './../films-list/films-list.jsx';
 import GenresList from './../genres-list/genres-list.jsx';
 import CatalogButton from './../catalog-button/catalog-button.jsx';
 import {HiddenTopDiv} from './../hidden-top-div/hidden-top-div.jsx';
+import UserBlock from '../user-block/user-block.jsx';
 
 const Main = ({promoFilm, renderScreens, genres}) => {
   return (
@@ -26,11 +27,7 @@ const Main = ({promoFilm, renderScreens, genres}) => {
             </a>
           </div>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock />
         </header>
         <div className="movie-card__wrap">
           <div className="movie-card__info">

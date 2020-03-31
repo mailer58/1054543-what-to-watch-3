@@ -4,6 +4,7 @@ import MovieReviews from "./movie-reviews.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Screens} from './../../const.js';
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -82,6 +83,9 @@ it(`Should MovieReviews render correctly`, () => {
       screen: Screens.MAIN,
       genresList: [`All genres`, `Comedy`],
       currentGenre: `All genres`
+    },
+    USER: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH
     }
   });
   const tree = renderer
