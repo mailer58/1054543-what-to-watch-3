@@ -4,6 +4,7 @@ import App from "./app.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Screens} from '../../const.js';
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -71,6 +72,9 @@ it(`Render App`, () => {
       numberPreviews: MAX_NUMBER_PREVIEWS,
       currentGenre: `All genres`,
       genresList: [`All genres`, `Drama`]
+    },
+    USER: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH
     }
   });
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import UserBlock from '../user-block/user-block.jsx';
 
 export const PageHeader = () => {
   return (
@@ -11,11 +12,8 @@ export const PageHeader = () => {
         </a>
       </div>
 
-      <div className="user-block">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-        </div>
-      </div>
+      <UserBlock />
     </header>
   );
 };
+
