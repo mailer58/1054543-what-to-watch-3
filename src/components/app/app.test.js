@@ -71,7 +71,8 @@ it(`Render App`, () => {
       screen: Screens.MAIN,
       numberPreviews: MAX_NUMBER_PREVIEWS,
       currentGenre: `All genres`,
-      genresList: [`All genres`, `Drama`]
+      genresList: [`All genres`, `Drama`],
+      film: films[0], // clicked film
     },
     USER: {
       authorizationStatus: AuthorizationStatus.NO_AUTH

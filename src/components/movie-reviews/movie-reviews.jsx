@@ -8,6 +8,8 @@ import {ReviewsColumn} from './../reviews-colum/reviews-column.jsx';
 import {connect} from "react-redux";
 import {getComments, getSimilarFilms} from '../../reducer/loading-data/selectors.js';
 import FilmsList from './../films-list/films-list.jsx';
+import {Buttons} from './../buttons/buttons.jsx';
+import {getScreen} from '../../reducer/app-state/selectors.js';
 
 const MovieReviews = (props) => {
   const {
@@ -63,22 +65,10 @@ const MovieReviews = (props) => {
                 <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{released}</span>
               </p>
-
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
+              <Buttons
+                screen = {screen}
+                renderScreens = {props.renderScreens}
+                api = {props.api} />
             </div>
           </div>
         </div>
@@ -122,6 +112,7 @@ const mapStateToProps = (state) => {
   return {
     comments: getComments(state),
     similarFilms: getSimilarFilms(state),
+    screen: getScreen(state),
   };
 };
 

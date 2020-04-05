@@ -5,8 +5,9 @@ import GenresList from './../genres-list/genres-list.jsx';
 import CatalogButton from './../catalog-button/catalog-button.jsx';
 import {HiddenTopDiv} from './../hidden-top-div/hidden-top-div.jsx';
 import UserBlock from '../user-block/user-block.jsx';
+import {Buttons} from './../buttons/buttons.jsx';
 
-const Main = ({promoFilm, renderScreens, genres}) => {
+const Main = ({promoFilm, renderScreens, genres, screen, api}) => {
   return (
     <React.Fragment>
       <HiddenTopDiv />
@@ -43,18 +44,10 @@ const Main = ({promoFilm, renderScreens, genres}) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <Buttons
+                  screen = {screen}
+                  renderScreens = {renderScreens}
+                  api = {api}/>
               </div>
             </div>
           </div>
@@ -95,7 +88,9 @@ const Main = ({promoFilm, renderScreens, genres}) => {
 Main.propTypes = {
   promoFilm: PropTypes.object.isRequired,
   renderScreens: PropTypes.func.isRequired,
-  genres: PropTypes.array.isRequired
+  genres: PropTypes.array.isRequired,
+  screen: PropTypes.string.isRequired,
+  api: PropTypes.func.isRequired
 };
 
 export default Main;

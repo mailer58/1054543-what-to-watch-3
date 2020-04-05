@@ -10,6 +10,7 @@ import {Operation as UserOperation} from './reducer/user/user.js';
 import {ActionCreator as ActionCreatorUser} from './reducer/user/user.js';
 import {AuthorizationStatus} from './reducer/user/user.js';
 import thunk from "redux-thunk";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreatorUser.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -19,7 +20,9 @@ export const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
-    applyMiddleware(thunk.withExtraArgument(api))
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 store.dispatch(DataOperation.loadFilms(api));

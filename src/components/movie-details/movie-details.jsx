@@ -7,6 +7,8 @@ import {Footer} from './../footer/footer.jsx';
 import FilmsList from './../films-list/films-list.jsx';
 import {getSimilarFilms} from '../../reducer/loading-data/selectors.js';
 import {connect} from "react-redux";
+import {Buttons} from './../buttons/buttons.jsx';
+import {getScreen} from '../../reducer/app-state/selectors.js';
 
 export const MovieDetails = (props) => {
   const {
@@ -16,7 +18,7 @@ export const MovieDetails = (props) => {
     genre,
     released,
     runTime,
-    backgroundImage
+    backgroundImage,
   } = props.film;
 
   const imgAlt = name + ` poster`;
@@ -42,21 +44,10 @@ export const MovieDetails = (props) => {
                 <span className="movie-card__year">{released}</span>
               </p>
 
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
+              <Buttons
+                screen = {screen}
+                renderScreens = {props.renderScreens}
+                api = {props.api} />
             </div>
           </div>
         </div>
@@ -128,6 +119,7 @@ export const MovieDetails = (props) => {
 const mapStateToProps = (state) => {
   return {
     similarFilms: getSimilarFilms(state),
+    screen: getScreen(state),
   };
 };
 

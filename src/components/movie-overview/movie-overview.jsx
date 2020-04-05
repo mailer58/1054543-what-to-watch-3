@@ -9,6 +9,8 @@ import {ActionCreator} from './../../reducer/app-state/app-state.js';
 import {ActionCreator as CommentsActionCreator} from './../../reducer/loading-data/loading-data.js';
 import {connect} from "react-redux";
 import {getSimilarFilms} from './../../reducer/loading-data/selectors.js';
+import {Buttons} from './../buttons/buttons.jsx';
+import {getScreen} from '../../reducer/app-state/selectors.js';
 
 const NUMBER_OF_ACTORS = 4;
 const MAX_PREVIEWS_NUMBER = 4;
@@ -23,7 +25,8 @@ export const MovieOverview = (props) => {
     director,
     genre,
     released,
-    backgroundImage} = props.film;
+    backgroundImage,
+  } = props.film;
 
   props.resetComments(); // avoid momentary showing previous comments
 
@@ -74,22 +77,10 @@ export const MovieOverview = (props) => {
                 <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{released}</span>
               </p>
-
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
+              <Buttons
+                screen = {screen}
+                renderScreens = {props.renderScreens}
+                api = {props.api} />
             </div>
           </div>
         </div>
@@ -141,6 +132,7 @@ export const MovieOverview = (props) => {
 const mapStateToProps = (state) => {
   return {
     similarFilms: getSimilarFilms(state),
+    screen: getScreen(state)
   };
 };
 

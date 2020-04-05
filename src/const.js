@@ -3,5 +3,16 @@ export const Screens = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
   REVIEW: `Review`,
-  SIGN_IN: `Sign in`
+  SIGN_IN: `Sign in`,
+  ADD_REVIEW: `Add review`,
+  FAVORITE_LIST: `Favorite list`,
+};
+
+export const ElementState = {
+  BLOCKED: `BLOCKED`,
+  UNBLOCKED: `UNBLOCKED`
+};
+
+export const Error = {
+  UNAUTHORIZED: 401
 };

@@ -8,6 +8,12 @@ export const getFilms = (state) => {
   return state[NAME_SPACE].allFilms;
 };
 
+export const getFavoriteFilms = createSelector(
+    getFilms,
+    (films) => {
+      return films.filter((film) => film.isFavorite === true);
+    });
+
 export const filterFilmsByGenre = createSelector(
     getFilms, getGenre,
     (films, genre) => {

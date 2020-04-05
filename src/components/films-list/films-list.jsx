@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import withFilmCard from './../../hocs/with-film-card/with-film-card.jsx';
 import {FilmCard} from './../../components/film-card/film-card.jsx';
 import {connect} from "react-redux";
-import {filterFilmsByGenre, getSimilarFilms, getFilms} from '../../reducer/loading-data/selectors.js';
+import {filterFilmsByGenre, getSimilarFilms, getFilms, getFavoriteFilms} from '../../reducer/loading-data/selectors.js';
 import {getNumberPreviews, getScreen, getGenre} from '../../reducer/app-state/selectors.js';
 import {Screens} from '../../const.js';
 
@@ -18,6 +18,7 @@ const FilmsList = (props) => {
     renderScreens,
     numberPreviews, // redux
     currentGenre, // redux
+    favoriteFilms // redux
   } = props;
 
   let films;
@@ -30,9 +31,13 @@ const FilmsList = (props) => {
     films = filmsByGenre.slice();
     films.length = getArrayLength(filmsByGenre, numberPreviews);
 
-  } else if (screen !== Screens.Main) {
+  } else if (screen === Screens.OVERVIEW || screen === Screens.DETAILS
+    || screen === Screens.REVIEW) {
     films = similarFilms.slice();
     films.length = getArrayLength(similarFilms, numberPreviews);
+
+  } else if (screen === Screens.FAVORITE_LIST) {
+    films = favoriteFilms.slice();
   }
 
   return (
@@ -53,7 +58,8 @@ const mapStateToProps = (state) => {
     filmsByGenre: filterFilmsByGenre(state),
     similarFilms: getSimilarFilms(state),
     numberPreviews: getNumberPreviews(state),
-    currentGenre: getGenre(state)
+    currentGenre: getGenre(state),
+    favoriteFilms: getFavoriteFilms(state)
   };
 };
 
