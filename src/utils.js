@@ -16,7 +16,7 @@ export const modifyFilmDataFromJson = (data) => {
     runTime: data.run_time,
     genre: data.genre,
     released: data.released,
-    isVaforite: data.is_favorite,
+    isFavorite: data.is_favorite,
   };
 };
 

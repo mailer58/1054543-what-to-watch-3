@@ -152,6 +152,7 @@ Array [
       <form
         action="#"
         className="sign-in__form"
+        onClick={[Function]}
         onSubmit={[Function]}
       >
         <div

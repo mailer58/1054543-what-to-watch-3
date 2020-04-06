@@ -22,4 +22,16 @@ export const getNumberPreviews = (state) => {
   return state[NAME_SPACE].numberPreviews;
 };
 
+export const getReviewFormState = (state) => {
+  return state[NAME_SPACE].reviewFormState; // blocked/unblocked
+};
+
+export const isReviewFormError = (state) => {
+  return state[NAME_SPACE].reviewFormError; // true/false
+};
+
+export const getAddFilmButtonState = (state) => {
+  return state[NAME_SPACE].addFilmButtonState; // blocked/unblocked
+};
+
 

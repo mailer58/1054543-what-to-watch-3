@@ -13,6 +13,8 @@ import {getFilms, getPromoFilm} from '../../reducer/loading-data/selectors.js';
 import {getScreen, getFilm, getGenres} from '../../reducer/app-state/selectors.js';
 import {getAuthorizationStatus} from './../../reducer/user/selectors.js';
 import {Operation as UserOperation, AuthorizationStatus} from './../../reducer/user/user.js';
+import AddReviewPage from './../add-review-page/add-review-page.jsx';
+import {FavoriteList} from '../favorite-list/favorite-list.jsx';
 
 class App extends PureComponent {
   constructor() {
@@ -33,9 +35,13 @@ class App extends PureComponent {
       authorizationStatus
     } = this.props;
 
-    if (screenType && clickedFilm) {
-      // change state of redux store for screen and film:
+    // change state of redux store for screen and film:
+
+    if (screenType) {
       changeScreen(screenType);
+    }
+
+    if (clickedFilm) {
       changeFilm(clickedFilm);
     }
 
@@ -44,6 +50,8 @@ class App extends PureComponent {
         <Main promoFilm = {promoFilm}
           renderScreens = {this.renderScreens}
           genres = {genres}
+          screen = {screen}
+          api = {api}
         />);
     }
 
@@ -89,6 +97,26 @@ class App extends PureComponent {
       );
     } else if (screen === Screens.SIGN_IN && authorizationStatus === AuthorizationStatus.AUTH) {
       changeScreen(Screens.MAIN);
+    }
+
+    if (screen === Screens.ADD_REVIEW) {
+      if (authorizationStatus === AuthorizationStatus.AUTH) {
+        return <AddReviewPage api = {api}/>;
+      } else {
+        return <AuthScreen
+          login = {login}
+          api = {api} />;
+      }
+    }
+
+    if (screen === Screens.FAVORITE_LIST) {
+      if (authorizationStatus === AuthorizationStatus.AUTH) {
+        return <FavoriteList renderScreens = {this.renderScreens}/>;
+      } else {
+        return <AuthScreen
+          login = {login}
+          api = {api} />;
+      }
     }
     return null;
   }

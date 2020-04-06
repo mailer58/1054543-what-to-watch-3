@@ -58,7 +58,8 @@ const films = [{
 },
 ];
 
-const film = {
+const currentFilm = {
+  id: 1,
   name: `Fantastic Beasts: The Crimes of Grindelwald`,
   posterImage: ``,
   rating: 0,
@@ -79,7 +80,8 @@ it(`Should MovieDetails render correctly`, () => {
     APP_STATE: {
       screen: Screens.MAIN,
       genresList: [`All genres`, `Drama`],
-      currentGenre: `All genres`
+      currentGenre: `All genres`,
+      film: currentFilm, // clicked film
     },
     USER: {
       authorizationStatus: AuthorizationStatus.NO_AUTH
@@ -88,7 +90,7 @@ it(`Should MovieDetails render correctly`, () => {
   const tree = renderer
     .create(<Provider store = {store}>
       <MovieDetails
-        film = {film}
+        film = {currentFilm}
         renderScreens = {jest.fn()}
         tab = {`Details`}
       />

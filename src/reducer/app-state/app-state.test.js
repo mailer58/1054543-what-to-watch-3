@@ -1,5 +1,5 @@
 import {reducer, ActionCreator, ActionType} from "./app-state.js";
-import {Screens} from './../../const.js';
+import {Screens, ElementState} from './../../const.js';
 
 const MAX_DEFAULT_NUMBER_PREVIEWS = 8;
 
@@ -9,7 +9,11 @@ it(`Reducer without additional parameters should return initial state`, () => {
     film: {}, // clicked film
     genresList: [],
     currentGenre: `All genres`,
-    numberPreviews: MAX_DEFAULT_NUMBER_PREVIEWS
+    numberPreviews: MAX_DEFAULT_NUMBER_PREVIEWS,
+    reviewFormState: ElementState.UNBLOCKED,
+    reviewFormError: false,
+    addFilmButtonState: ElementState.UNBLOCKED,
+    favoriteFilms: null,
   });
 });
 

@@ -28,7 +28,8 @@ const promo = {
   isVaforite: false,
 };
 
-const film = {
+const currentFilm = {
+  id: 1,
   name: `Fantastic Beasts: The Crimes of Grindelwald`,
   posterImage: ``,
   rating: 0,
@@ -82,7 +83,8 @@ it(`Should MovieReviews render correctly`, () => {
     APP_STATE: {
       screen: Screens.MAIN,
       genresList: [`All genres`, `Comedy`],
-      currentGenre: `All genres`
+      currentGenre: `All genres`,
+      film: currentFilm, // clicked film
     },
     USER: {
       authorizationStatus: AuthorizationStatus.NO_AUTH
@@ -91,7 +93,7 @@ it(`Should MovieReviews render correctly`, () => {
   const tree = renderer
     .create(<Provider store = {store}>
       <MovieReviews
-        film = {film}
+        film = {currentFilm}
         renderScreens = {jest.fn()}
         tab = {`Reviews`}
       />

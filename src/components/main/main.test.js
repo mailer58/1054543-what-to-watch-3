@@ -68,7 +68,8 @@ const store = mockStore({
   APP_STATE: {
     screen: Screens.MAIN,
     genresList: genres,
-    currentGenre: `All genres`
+    currentGenre: `All genres`,
+    film: films[0], // clicked film
   },
   USER: {
     authorizationStatus: AuthorizationStatus.NO_AUTH
