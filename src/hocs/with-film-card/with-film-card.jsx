@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const withFilmCard = (Component) => {
   class WithFilmCard extends PureComponent {
-    constructor({filmData, renderScreens}) {
+    constructor({filmData, renderScreens, onClickCard}) {
       super();
       this.state = {
         isActive: false
@@ -13,7 +13,7 @@ const withFilmCard = (Component) => {
       this._filmData = filmData;
       this._renderScreens = renderScreens;
 
-      this._onClickCard = this._onClickCard.bind(this, this._filmData);
+      this.onClickCard = onClickCard;
       this._onMouseOverCard = this._onMouseOverCard.bind(this, this._filmData);
       this._onMouseOutCard = this._onMouseOutCard.bind(this, this._filmData);
     }
@@ -26,9 +26,6 @@ const withFilmCard = (Component) => {
       this.setState({isActive: false});
     }
 
-    _onClickCard(film) {
-      this._renderScreens(Screens.OVERVIEW, film);
-    }
 
     render() {
       return <Component
@@ -37,7 +34,7 @@ const withFilmCard = (Component) => {
         name = {this._filmData.name}
         previewImage = {this._filmData.previewImage}
         previewVideoLink = {this._filmData.previewVideoLink}
-        onClickCard = {this._onClickCard}
+        onClickCard = {this.onClickCard}
         onMouseOverCard = {this._onMouseOverCard}
         onMouseOutCard = {this._onMouseOutCard}
       />;

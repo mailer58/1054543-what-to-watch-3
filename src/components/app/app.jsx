@@ -20,9 +20,10 @@ import {AppRoute} from '../../const.js';
 import history from "../../history.js";
 
 class App extends PureComponent {
-  constructor() {
+  constructor(props) {
     super();
     this.renderScreens = this.renderScreens.bind(this);
+    this.history = props.history;
   }
 
   renderScreens(screenType, clickedFilm) {
@@ -55,6 +56,7 @@ class App extends PureComponent {
           genres = {genres}
           screen = {screen}
           api = {api}
+          onClickCard = {this.onClickCard}
         />);
     }
 
@@ -116,7 +118,12 @@ class App extends PureComponent {
     return null;
   }
 
+  onClickCard(value) {
+    return history.push(value);
+  }
+
   render() {
+    console.log(this.props);
     const {
       screen,
       promoFilm,
@@ -135,9 +142,9 @@ class App extends PureComponent {
 
           <Route exact path={AppRoute.PLAYER}
             render ={() => (
-              <WidePlayer 
-              history = {history}
-              film={film}/>
+              <WidePlayer
+                history = {history}
+                film={film}/>
             )}>
           </Route>
 

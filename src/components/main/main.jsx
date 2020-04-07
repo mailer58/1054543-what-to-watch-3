@@ -7,7 +7,7 @@ import {HiddenTopDiv} from './../hidden-top-div/hidden-top-div.jsx';
 import UserBlock from '../user-block/user-block.jsx';
 import {Buttons} from './../buttons/buttons.jsx';
 
-const Main = ({promoFilm, renderScreens, genres, screen, api}) => {
+const Main = ({promoFilm, renderScreens, genres, screen, api, onClickCard}) => {
   return (
     <React.Fragment>
       <HiddenTopDiv />
@@ -63,7 +63,8 @@ const Main = ({promoFilm, renderScreens, genres, screen, api}) => {
           </ul>
 
           <div className="catalog__movies-list">
-            <FilmsList renderScreens = {renderScreens} />
+            <FilmsList renderScreens = {renderScreens}
+            onClickCard = {onClickCard} />
           </div>
 
           <CatalogButton />

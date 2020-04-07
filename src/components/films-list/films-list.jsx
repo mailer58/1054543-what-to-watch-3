@@ -18,7 +18,8 @@ const FilmsList = (props) => {
     renderScreens,
     numberPreviews, // redux
     currentGenre, // redux
-    favoriteFilms // redux
+    favoriteFilms, // redux
+    onClickCard
   } = props;
 
   let films;
@@ -44,6 +45,7 @@ const FilmsList = (props) => {
     films.map((film) => {
       return (<FilmCardWrapped filmData = {film}
         renderScreens = {renderScreens}
+        onClickCard = {onClickCard}
         key = {film.id}
       />);
     })
