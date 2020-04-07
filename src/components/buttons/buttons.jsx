@@ -5,14 +5,17 @@ import {AddReviewButton} from './add-review-button/add-review-button.jsx';
 import {Screens} from './../../const.js';
 import PropTypes from "prop-types";
 
-export const Buttons = ({screen, renderScreens, api}) => {
+export const Buttons = ({screen, renderScreens, api, filmId}) => {
   return (<div className="movie-card__buttons">
-    {screen === Screens.MAIN ? null : <PlayButton />}
+    <PlayButton
+      renderScreens = {renderScreens}
+      filmId = {filmId}/>
     <AddFilmButton
       renderScreens = {renderScreens}
       api = {api}/>
-    <AddReviewButton
-      renderScreens = {renderScreens}/>
+    {screen === Screens.MAIN ? null :
+      <AddReviewButton
+        renderScreens = {renderScreens}/>}
   </div>
   );
 };

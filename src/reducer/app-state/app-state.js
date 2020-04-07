@@ -12,6 +12,7 @@ const initialState = {
   reviewFormError: false,
   addFilmButtonState: ElementState.UNBLOCKED,
   favoriteFilms: null,
+  history: null
 };
 
 export const ActionType = {
@@ -23,7 +24,8 @@ export const ActionType = {
   CHANGE_REVIEW_FORM: `CHANGE_REVIEW_FORM`,
   SET_REVIEW_FORM_ERROR: `SET_REVIEW_FORM_ERROR`,
   SET_ADD_FILM_BUTTON_STATE: `SET_ADD_FILM_BUTTON_STATE`,
-  ADD_FAVORITE_FILM: `ADD_FAVORITE_FILM`
+  ADD_FAVORITE_FILM: `ADD_FAVORITE_FILM`,
+  ADD_HISTORY: `ADD_HISTORY`
 };
 
 export const ActionCreator = {
@@ -89,6 +91,13 @@ export const ActionCreator = {
       payload: filmsSet
     };
   },
+
+  addHistory: (value) => {
+    return {
+      type: ActionType.ADD_HISTORY,
+      payload: value
+    };
+  },
 };
 
 export const reducer = (state = initialState, action) => {
@@ -137,6 +146,11 @@ export const reducer = (state = initialState, action) => {
     case ActionType.ADD_FAVORITE_FILM:
       return Object.assign({}, state, {
         favoriteFilms: action.payload
+      });
+
+    case ActionType.ADD_HISTORY:
+      return Object.assign({}, state, {
+        history: action.payload
       });
   }
   return state;

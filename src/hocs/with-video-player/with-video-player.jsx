@@ -15,10 +15,13 @@ const withVideoPlayer = (Component) => {
       this._previewVideoLink = filmData.previewVideoLink;
       this._poster = filmData.previewImage;
 
-      this._videoRef = createRef();
+      this.previewRef = createRef();
+
       this._video = null;
 
       this._timeout = null;
+      this.onPlayButtonClick = this.onPlayButtonClick.bind(this);
+      this.onPauseButtonClick = this.onPauseButtonClick(this);
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -31,7 +34,7 @@ const withVideoPlayer = (Component) => {
 
     componentDidUpdate() {
       if (this.state.isPlaying) {
-        this._video = this._videoRef.current;
+        this._video = this.previewRef.current;
         this._timeout = setTimeout(() => {
           this._video.play();
           this._video.muted = true;
@@ -46,11 +49,26 @@ const withVideoPlayer = (Component) => {
       }
     }
 
+    onPlayButtonClick() {
+      if (this.previewRef.current) {
+        this.previewRef.current.pause();
+      }
+    }
+
+    onPauseButtonClick() {
+      if (this.previewRef.current) {
+        this.previewRef.current.play();
+      }
+    }
+
     render() {
       return <Component
-        videoRef = {this._videoRef}
+        videoPreview = {this._videoPreview}
+        fullVideo = {this._fullVideo}
         previewVideoLink = {this._previewVideoLink}
         previewImage = {this._poster}
+        previewRef = {this.previewRef}
+        isPlaying = {this.state.isPlaying}
       />;
     }
   }

@@ -6,15 +6,10 @@ import {AuthorizationStatus} from './../../reducer/user/user.js';
 import {Screens} from './../../const.js';
 import {ActionCreator} from './../../reducer/app-state/app-state.js';
 import {getScreen} from '../../reducer/app-state/selectors.js';
+import {Link} from "react-router-dom";
+import {AppRoute} from '../../const.js';
 
 const UserBlock = (props) => {
-
-  const onClick = (func) => {
-    return (evt) => {
-      evt.preventDefault();
-      func();
-    };
-  };
 
   const onAvatarClick = () => {
     if (screen !== Screens.FAVORITE_LIST) {
@@ -23,15 +18,12 @@ const UserBlock = (props) => {
     }
   };
 
-  const changeScreenToSignIn = props.changeScreen.bind(null, Screens.SIGN_IN);
-  const onLinkClick = onClick(changeScreenToSignIn);
-
   return (
     <div className="user-block">
       {props.authorizationStatus === AuthorizationStatus.AUTH ?
         <div className="user-block__avatar">
           <img onClick={onAvatarClick} src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-        </div> : <a onClick ={onLinkClick} href="sign-in.html" className="user-block__link">Sign in</a>
+        </div> : <Link to={AppRoute.SIGN_IN} className="user-block__link">Sign in</Link>
       }
     </div>
   );

@@ -20,4 +20,9 @@ export const modifyFilmDataFromJson = (data) => {
   };
 };
 
+export const getRoute = (path, id) => {
+  const replace = path.replace(`:id`, id);
+  return replace + id;
+};
+
 

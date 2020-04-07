@@ -5,7 +5,7 @@ import MovieDetails from './../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import AuthScreen from './../auth-screen/auth-screen.jsx';
 import PropTypes from "prop-types";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import {Screens} from './../../const.js';
 import {connect} from "react-redux";
 import {ActionCreator} from './../../reducer/app-state/app-state.js';
@@ -15,6 +15,9 @@ import {getAuthorizationStatus} from './../../reducer/user/selectors.js';
 import {Operation as UserOperation, AuthorizationStatus} from './../../reducer/user/user.js';
 import AddReviewPage from './../add-review-page/add-review-page.jsx';
 import {FavoriteList} from '../favorite-list/favorite-list.jsx';
+import WidePlayer from '../wide-player/wide-player.jsx';
+import {AppRoute} from '../../const.js';
+import history from "../../history.js";
 
 class App extends PureComponent {
   constructor() {
@@ -55,17 +58,6 @@ class App extends PureComponent {
         />);
     }
 
-    if (screen === Screens.OVERVIEW) {
-      return (
-        <MovieOverview
-          film = {film}
-          renderScreens = {this.renderScreens}
-          tab = {Screens.OVERVIEW}
-          api = {api}
-        />
-      );
-    }
-
     if (screen === Screens.DETAILS) {
       return (
         <MovieDetails
@@ -90,11 +82,7 @@ class App extends PureComponent {
     }
 
     if (screen === Screens.SIGN_IN && authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      return (
-        <AuthScreen
-          login = {login}
-          api = {api} />
-      );
+      return history.push(AppRoute.SIGN_IN);
     } else if (screen === Screens.SIGN_IN && authorizationStatus === AuthorizationStatus.AUTH) {
       changeScreen(Screens.MAIN);
     }
@@ -118,24 +106,63 @@ class App extends PureComponent {
           api = {api} />;
       }
     }
+
+    if (screen === Screens.WIDE_PLAYER) {
+      return (
+        <WidePlayer />
+      );
+    }
+
     return null;
   }
 
   render() {
+    const {
+      screen,
+      promoFilm,
+      film,
+      changeScreen,
+      changeFilm,
+      genres,
+      api,
+      login,
+      authorizationStatus
+    } = this.props;
+
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
-          <Route exact path="/">
-            {this.renderScreens()}
+
+          <Route exact path={AppRoute.PLAYER}
+            render ={() => (
+              <WidePlayer 
+              history = {history}
+              film={film}/>
+            )}>
           </Route>
-          <Route exact path="/movie">
-            <MovieOverview />
+
+          <Route exact path={AppRoute.MAIN}>
+            {this.renderScreens(Screens.MAIN)}
           </Route>
-          <Route exact path="/dev-auth">
-            <AuthScreen />
+
+          <Route exact path={AppRoute.LOGIN}>
+            <AuthScreen
+              login = {login}
+              api = {api} />
           </Route>
+
+          <Route exact path={AppRoute.FILM}>
+            <MovieOverview
+              film = {film}
+              renderScreens = {this.renderScreens}
+              tab = {Screens.OVERVIEW}
+              api = {api}
+            />
+          </Route>
+
+
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

@@ -34,4 +34,7 @@ export const getAddFilmButtonState = (state) => {
   return state[NAME_SPACE].addFilmButtonState; // blocked/unblocked
 };
 
+export const getHistory = (state) => {
+  return state[NAME_SPACE].history;
+};
 

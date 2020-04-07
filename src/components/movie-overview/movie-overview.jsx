@@ -17,6 +17,7 @@ const MAX_PREVIEWS_NUMBER = 4;
 
 export const MovieOverview = (props) => {
   const {
+    id,
     name,
     posterImage,
     rating,
@@ -80,7 +81,8 @@ export const MovieOverview = (props) => {
               <Buttons
                 screen = {screen}
                 renderScreens = {props.renderScreens}
-                api = {props.api} />
+                api = {props.api} 
+                filmId = {id}/>
             </div>
           </div>
         </div>

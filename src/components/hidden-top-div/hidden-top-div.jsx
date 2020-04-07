@@ -27,6 +27,15 @@ export const HiddenTopDiv = () => {
             <polygon id="Line" fill="#EEE5B5" fillRule="nonzero" points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"/>
             <polygon id="Line" fill="#EEE5B5" fillRule="nonzero" points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"/>
           </g>
-        </symbol></svg>
+        </symbol>
+        <symbol id="play" fill="white" viewBox="0 0 512.055 512.055">
+          <g>
+            <g>
+              <path d="M500.235,236.946L30.901,2.28C16.717-4.813,0.028,5.502,0.028,21.361v469.333c0,15.859,16.689,26.173,30.874,19.081
+			l469.333-234.667C515.958,267.247,515.958,244.808,500.235,236.946z M42.694,456.176V55.879l400.297,200.149L42.694,456.176z"/>
+            </g>
+          </g>
+        </symbol>
+      </svg>
     </div>);
 };

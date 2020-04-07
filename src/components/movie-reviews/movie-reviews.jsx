@@ -18,6 +18,7 @@ const MovieReviews = (props) => {
     released,
     posterImage,
     backgroundImage,
+    id
   } = props.film;
 
   const {comments} = props;
@@ -68,7 +69,8 @@ const MovieReviews = (props) => {
               <Buttons
                 screen = {screen}
                 renderScreens = {props.renderScreens}
-                api = {props.api} />
+                api = {props.api}
+                filmId = {id}/>
             </div>
           </div>
         </div>

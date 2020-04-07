@@ -47,7 +47,8 @@ const Main = ({promoFilm, renderScreens, genres, screen, api}) => {
                 <Buttons
                   screen = {screen}
                   renderScreens = {renderScreens}
-                  api = {api}/>
+                  api = {api}
+                  filmId = {promoFilm.id} />
               </div>
             </div>
           </div>

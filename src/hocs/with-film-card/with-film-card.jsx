@@ -33,6 +33,7 @@ const withFilmCard = (Component) => {
     render() {
       return <Component
         isActive = {this.state.isActive}
+        id = {this._filmData.id}
         name = {this._filmData.name}
         previewImage = {this._filmData.previewImage}
         previewVideoLink = {this._filmData.previewVideoLink}

@@ -12,6 +12,7 @@ import {getScreen} from '../../reducer/app-state/selectors.js';
 
 export const MovieDetails = (props) => {
   const {
+    id,
     name,
     posterImage,
     director,
@@ -47,7 +48,8 @@ export const MovieDetails = (props) => {
               <Buttons
                 screen = {screen}
                 renderScreens = {props.renderScreens}
-                api = {props.api} />
+                api = {props.api}
+                filmId = {id}/>
             </div>
           </div>
         </div>
